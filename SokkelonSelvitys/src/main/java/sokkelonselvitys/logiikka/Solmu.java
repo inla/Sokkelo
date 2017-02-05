@@ -1,8 +1,5 @@
 package sokkelonselvitys.logiikka;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  *
  * @author inka
@@ -12,7 +9,7 @@ public class Solmu {
     private int y;
     private Solmu vanhempi;
     private SolmunTila tila;
-    private List<Solmu> mahdollisetNaapurit;
+    private Lista<Solmu> mahdollisetNaapurit;
     
     /**
      *
@@ -44,7 +41,7 @@ public class Solmu {
         return tila;
     }
 
-    public List<Solmu> getMahdollisetNaapurit() {
+    public Lista<Solmu> getMahdollisetNaapurit() {
         return mahdollisetNaapurit;
     }
 
@@ -52,12 +49,12 @@ public class Solmu {
         this.tila = tila;
     }
 
-    private List<Solmu> naapurit() {
-        List<Solmu> naapurit = new ArrayList<>();
-        naapurit.add(new Solmu(this.x - 1, this.y, this));
-        naapurit.add(new Solmu(this.x + 1, this.y, this));
-        naapurit.add(new Solmu(this.x, this.y - 1, this));
-        naapurit.add(new Solmu(this.x, this.y + 1, this));
+    private Lista<Solmu> naapurit() {
+        Lista<Solmu> naapurit = new Lista<>();
+        naapurit.lisaa(new Solmu(this.x - 1, this.y, this));
+        naapurit.lisaa(new Solmu(this.x + 1, this.y, this));
+        naapurit.lisaa(new Solmu(this.x, this.y - 1, this));
+        naapurit.lisaa(new Solmu(this.x, this.y + 1, this));
         return naapurit;
     }
     

@@ -6,5 +6,5 @@ package sokkelonselvitys.logiikka;
  * @author inka
  */
 public enum Ruutu {
-    ESTE, MAA;      // + erilaisia hidastuksia?
+    ESTE, MAA;      // + erilaisia hidastuksia? aloitus, maali?
 }

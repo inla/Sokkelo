@@ -1,7 +1,5 @@
 package sokkelonselvitys.logiikka;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Abstrakti luokka, jonka kaikki eri algoritmit perivät. Pitää sisällään
@@ -34,9 +32,9 @@ public abstract class Algoritmi {
      * @param solmu käsiteltävä solmu
      * @return lista naapureista
      */
-    public List<Solmu> kasiteltavanSolmunNaapurit(Solmu solmu) {
-        List<Solmu> kaikki = solmu.getMahdollisetNaapurit();
-        List<Solmu> naapurit = new ArrayList<>();
+    public Lista<Solmu> kasiteltavanSolmunNaapurit(Solmu solmu) {
+        Lista<Solmu> kaikki = solmu.getMahdollisetNaapurit();
+        Lista<Solmu> naapurit = new Lista<>();
 
         for (Solmu s : kaikki) {
             int koordX = s.getX();
@@ -44,7 +42,7 @@ public abstract class Algoritmi {
             if (!onkoRajojenSisalla(koordX, koordY) || onkoEste(koordX, koordY)) {
                 continue;
             }
-            naapurit.add(s);
+            naapurit.lisaa(s);
         }
 
         return naapurit;

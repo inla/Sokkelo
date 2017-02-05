@@ -1,8 +1,5 @@
 package sokkelonselvitys.logiikka;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
-
 /**
  * Leveyssuuntainen haku.
  *
@@ -10,7 +7,7 @@ import java.util.Queue;
  */
 public class BFS extends Algoritmi {
 
-    private Queue<Solmu> tutkittavat;
+    private Jono<Solmu> tutkittavat;
 
     /**
      * Konstruktori.
@@ -21,17 +18,17 @@ public class BFS extends Algoritmi {
      */
     public BFS(Ruutu[][] sokkelo, Solmu aloitus, Solmu maali) {
         super(sokkelo, aloitus, maali);
-        this.tutkittavat = new ArrayDeque<>();
+        this.tutkittavat = new Jono<>();
     }
 
     /**
      *
      */
     public void suorita() {
-        tutkittavat.add(aloitus);
+        tutkittavat.lisaa(aloitus);
 
-        while (!tutkittavat.isEmpty()) {
-            Solmu tutkittava = tutkittavat.remove();
+        while (!tutkittavat.tyhja()) {
+            Solmu tutkittava = tutkittavat.ota();
 
             if (tutkittava == maali) {
                 //maali löydetty
@@ -42,7 +39,7 @@ public class BFS extends Algoritmi {
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 if (s.getTila() == null) {
-                    tutkittavat.add(s);
+                    tutkittavat.lisaa(s);
                     s.setTila(SolmunTila.LOYDETTY);
                 }
             }
