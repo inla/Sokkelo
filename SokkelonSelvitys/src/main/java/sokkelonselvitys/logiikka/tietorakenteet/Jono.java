@@ -1,7 +1,7 @@
-package sokkelonselvitys.logiikka;
+package sokkelonselvitys.logiikka.tietorakenteet;
 
 /**
- * Tietorakenne jono
+ * Tietorakenne jono.
  *
  * @author inka
  * @param <E> talletettavien alkioiden tyyppi
@@ -62,6 +62,12 @@ public class Jono<E> {
         }
     }
 
+    /**
+     * Kertoo onko jono täynnä. Jonoon voi tallettaa enintään maxKoko-1 alkiota,
+     * sillä muuten täyttä jonoa ei voisi erottaa tyhjästä jonosta.
+     *
+     * @return true jos tailista seuraava paikka on head
+     */
     private boolean taysi() {
         int tailnext = this.tail + 1;
         if (tailnext == this.maxKoko) {
@@ -90,4 +96,29 @@ public class Jono<E> {
         this.maxKoko *= 2;
 
     }
+
+    /**
+     * Kertoo kuinka monta alkiota jonossa on.
+     *
+     * @return alkioiden määrä
+     */
+    public int koko() {
+        return (tail - head + maxKoko) % maxKoko;
+    }
+
+    public int getHead() {
+        return head;
+    }
+
+    public int getTail() {
+        return tail;
+    }
+
+    public int getMaxKoko() {
+        return maxKoko;
+    }
+
+//    private int seuraava(int i) {
+//        return (i + 1) % this.maxKoko;
+//    }
 }

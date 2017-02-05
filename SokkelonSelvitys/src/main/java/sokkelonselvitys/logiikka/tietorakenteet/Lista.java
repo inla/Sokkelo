@@ -1,4 +1,4 @@
-package sokkelonselvitys.logiikka;
+package sokkelonselvitys.logiikka.tietorakenteet;
 
 import java.util.Iterator;
 
@@ -9,7 +9,7 @@ import java.util.Iterator;
  * @author inka
  * @param <E> talletettavien alkioiden tyyppi
  */
-public class Lista<E> implements Iterable<E>{
+public class Lista<E> implements Iterable<E> {
 
     private Object[] lista;
     private int koko;
@@ -75,6 +75,23 @@ public class Lista<E> implements Iterable<E>{
         }
         this.koko--;
         this.lista[koko] = null;
+    }
+
+    /**
+     * Kertoo, onko lista tyhjä.
+     *
+     * @return true jos koko on nolla
+     */
+    public boolean tyhja() {
+        return getKoko() == 0;
+    }
+
+    public int getKoko() {
+        return koko;
+    }
+
+    public int getMaxKoko() {
+        return maxKoko;
     }
 
     @Override

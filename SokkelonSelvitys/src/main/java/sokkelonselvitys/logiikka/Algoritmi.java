@@ -1,5 +1,7 @@
 package sokkelonselvitys.logiikka;
 
+import sokkelonselvitys.logiikka.tietorakenteet.Lista;
+
 
 /**
  * Abstrakti luokka, jonka kaikki eri algoritmit perivät. Pitää sisällään
