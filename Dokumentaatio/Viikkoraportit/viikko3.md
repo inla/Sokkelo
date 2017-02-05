@@ -4,7 +4,7 @@
 päivämäärä | tunnit | selostus |
 ---------|------------|-------------
 01.02.17 | 4 h | tietorakenteet lista ja jono
-05.02.17 | 7 h | testejä ja javadoceja (+A\*)
+05.02.17 | 7 h | testejä ja javadoceja (+ A\*)
 
 yht. 11 h
 
