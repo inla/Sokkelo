@@ -3,21 +3,24 @@ package sokkelonselvitys.logiikka;
 import sokkelonselvitys.logiikka.tietorakenteet.Lista;
 
 /**
+ * Solmulla on koordinaatit, vanhempi, tila ja naapureita.
  *
  * @author inka
  */
 public class Solmu {
+
     private int x;
     private int y;
     private Solmu vanhempi;
     private SolmunTila tila;
     private Lista<Solmu> mahdollisetNaapurit;
-    
+
     /**
+     * Konstruktori.
      *
-     * @param x
-     * @param y
-     * @param vanhempi
+     * @param x x-koorinaatti
+     * @param y y-koordinaatti
+     * @param vanhempi solmu, josta päädyttiin tähän solmuun
      */
     public Solmu(int x, int y, Solmu vanhempi) {
         this.x = x;
@@ -59,6 +62,5 @@ public class Solmu {
         naapurit.lisaa(new Solmu(this.x, this.y + 1, this));
         return naapurit;
     }
-    
-    
+
 }

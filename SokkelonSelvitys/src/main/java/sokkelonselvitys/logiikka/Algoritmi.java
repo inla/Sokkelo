@@ -2,7 +2,6 @@ package sokkelonselvitys.logiikka;
 
 import sokkelonselvitys.logiikka.tietorakenteet.Lista;
 
-
 /**
  * Abstrakti luokka, jonka kaikki eri algoritmit perivät. Pitää sisällään
  * metodeja, joita alaluokat tarvitsevat.
@@ -16,7 +15,7 @@ public abstract class Algoritmi {
     protected Solmu maali;
 
     /**
-     * Konstruktori.
+     * Luo uuden algoritmin.
      *
      * @param sokkelo Ruutu-olioista koostuva kaksiulotteinen taulukko
      * @param aloitus aloitussolmu
@@ -27,6 +26,11 @@ public abstract class Algoritmi {
         this.aloitus = aloitus;
         this.maali = maali;
     }
+
+    /**
+     * Alaluokat toteuttavat tämän omilla tavoillaan.
+     */
+    public abstract void suorita();
 
     /**
      * Etsii käsiteltävän solmun naapurit.

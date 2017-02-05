@@ -12,7 +12,7 @@ public class BFS extends Algoritmi {
     private Jono<Solmu> tutkittavat;
 
     /**
-     * Konstruktori.
+     * Luo uuden leveyssuuntaishakualgoritmin.
      *
      * @param sokkelo tutkittava sokkelo
      * @param aloitus aloitussolmu
@@ -24,8 +24,9 @@ public class BFS extends Algoritmi {
     }
 
     /**
-     *
+     * Algoritmin toiminta.
      */
+    @Override
     public void suorita() {
         tutkittavat.lisaa(aloitus);
 
