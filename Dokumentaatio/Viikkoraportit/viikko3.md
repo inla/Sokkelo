@@ -9,3 +9,5 @@ päivämäärä | tunnit | selostus |
 yht. 11 h
 
 Tällä viikolla keskityin tietorakenteiden suunnitteluun ja testaukseen. Tarkoituksena oli myös saada A\* tehtyä, mutta sen toteuttaminen olikin hankalampaa, mitä olin kuvitellut. Se jää siis ensi viikon tehtäväksi.
+
+[pit](https://htmlpreview.github.io/?https://github.com/inla/Sokkelo/blob/master/Dokumentaatio/pit/201702060016/index.html)
