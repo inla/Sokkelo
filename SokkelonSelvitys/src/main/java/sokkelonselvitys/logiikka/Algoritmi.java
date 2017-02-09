@@ -76,7 +76,7 @@ public abstract class Algoritmi {
         return sokkelo[k.getY()][k.getX()] == Ruutu.ESTE;
     }
 
-    protected void maaliLoydetty() {
-
+    protected void maaliLoydetty(Solmu solmu) {
+        //solmun tilaksi reitti ?
     }
 }

@@ -8,7 +8,7 @@ package sokkelonselvitys.logiikka;
  */
 public class Solmu {
 
-    Koordinaatti koordinaatit;
+    private Koordinaatti koordinaatit;
     private Solmu edellinen;
     private SolmunTila tila;
     private int kuljetunReitinPituus;

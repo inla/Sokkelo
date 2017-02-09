@@ -24,14 +24,14 @@ public class AStar extends Algoritmi {
         super(sokkelo, aloitus, maali);
         this.lyhimmatReitit = new int[this.sokkelo.length][this.sokkelo.length];
         alustaReitit();
-        
+
         Comparator<Solmu> vertailija = new Comparator<Solmu>() {
 
             @Override
             public int compare(Solmu s1, Solmu s2) {
-                if (s1.getKuljetunReitinPituus()+etaisyysArvioMaaliin(s1) < s2.getKuljetunReitinPituus()+etaisyysArvioMaaliin(s2)) {
+                if (s1.getKuljetunReitinPituus() + etaisyysArvioMaaliin(s1) < s2.getKuljetunReitinPituus() + etaisyysArvioMaaliin(s2)) {
                     return -1;
-                } else if (s1.getKuljetunReitinPituus()+etaisyysArvioMaaliin(s1) > s2.getKuljetunReitinPituus()+etaisyysArvioMaaliin(s2)) {
+                } else if (s1.getKuljetunReitinPituus() + etaisyysArvioMaaliin(s1) > s2.getKuljetunReitinPituus() + etaisyysArvioMaaliin(s2)) {
                     return 1;
                 } else {
                     return 0;
@@ -44,17 +44,17 @@ public class AStar extends Algoritmi {
     @Override
     public void suorita() {
         this.tutkittavat.lisaa(aloitus);
-        
-        while(!tutkittavat.tyhja()) {
+
+        while (!tutkittavat.tyhja()) {
             Solmu tutkittava = this.tutkittavat.otaPienin();
-            
-            if (tutkittava == maali) {
-                maaliLoydetty();
+
+            if (tutkittava.getKoordinaatit().equals(this.maali.getKoordinaatit())) {
+                maaliLoydetty(tutkittava);
                 break;
             }
-            
+
             tutkittava.setTila(SolmunTila.KASITTELYSSA);
-            
+
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 //jos solmu on jo löydetty ja siihen tullaan nyt pidempää reittiä -> ei tehdä mitään
                 if (s.getTila() != null && lyhimmatReitit[s.getY()][s.getX()] <= s.getKuljetunReitinPituus()) {
@@ -64,7 +64,7 @@ public class AStar extends Algoritmi {
                 s.setTila(SolmunTila.LOYDETTY);
                 this.tutkittavat.lisaa(s);
             }
-            
+
             tutkittava.setTila(SolmunTila.KASITELTY);
         }
 

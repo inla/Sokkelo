@@ -33,8 +33,8 @@ public class BFS extends Algoritmi {
         while (!tutkittavat.tyhja()) {
             Solmu tutkittava = tutkittavat.ota();
 
-            if (tutkittava == maali) { //vertaa koordinaatteja?
-                maaliLoydetty();
+            if (tutkittava.getKoordinaatit().equals(maali.getKoordinaatit())) {
+                maaliLoydetty(tutkittava);
                 break;
             }
 

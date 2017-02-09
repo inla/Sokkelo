@@ -43,6 +43,35 @@ public class Koordinaatti {
         return null;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        }
+        if (getClass() != o.getClass()) {
+            return false;
+        }
+
+        Koordinaatti toinen = (Koordinaatti) o;
+
+        if (this.x != toinen.x) {
+            return false;
+        }
+        if (this.y != toinen.y) {
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + this.x;
+        hash = 89 * hash + this.y;
+        return hash;
+    }
+
     /**
      * Määrittelee mahdolliset suunnat, mihin koordinaattipisteestä voi liikkua.
      */
