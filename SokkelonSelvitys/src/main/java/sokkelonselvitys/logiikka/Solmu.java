@@ -8,7 +8,7 @@ package sokkelonselvitys.logiikka;
  */
 public class Solmu {
 
-    Koordinaatit koordinaatit;
+    Koordinaatti koordinaatit;
     private Solmu edellinen;
     private SolmunTila tila;
     private int kuljetunReitinPituus;
@@ -20,14 +20,14 @@ public class Solmu {
      * @param edellinen solmu, josta päädyttiin tähän solmuun
      * @param kuljetunReitinPituus reitti aloitussolmusta tähän solmuun
      */
-    public Solmu(Koordinaatit koord, Solmu edellinen, int kuljetunReitinPituus) {
+    public Solmu(Koordinaatti koord, Solmu edellinen, int kuljetunReitinPituus) {
         this.koordinaatit = koord;
         this.edellinen = edellinen;
         this.tila = null;
         this.kuljetunReitinPituus = kuljetunReitinPituus;
     }
 
-    public Koordinaatit getKoordinaatit() {
+    public Koordinaatti getKoordinaatit() {
         return koordinaatit;
     }
 

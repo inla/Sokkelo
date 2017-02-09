@@ -41,8 +41,8 @@ public abstract class Algoritmi {
     public Lista<Solmu> kasiteltavanSolmunNaapurit(Solmu solmu) {
         Lista<Solmu> naapurit = new Lista<>();
 
-        for (Koordinaatit.Suunta suunta : Koordinaatit.Suunta.values()) {
-            Koordinaatit k = solmu.getKoordinaatit().naapuriKoordinaatit(suunta);
+        for (Koordinaatti.Suunta suunta : Koordinaatti.Suunta.values()) {
+            Koordinaatti k = solmu.getKoordinaatit().naapuriKoordinaatit(suunta);
             if (!onkoRajojenSisalla(k) || onkoEste(k)) {
                 continue;
             }
@@ -65,14 +65,14 @@ public abstract class Algoritmi {
         return sokkelo;
     }
 
-    private boolean onkoRajojenSisalla(Koordinaatit k) {
+    private boolean onkoRajojenSisalla(Koordinaatti k) {
         if (k.getX() < 0 || k.getY() < 0 || k.getX() >= sokkelo[0].length || k.getY() >= sokkelo.length) {
             return false;
         }
         return true;
     }
 
-    private boolean onkoEste(Koordinaatit k) {
+    private boolean onkoEste(Koordinaatti k) {
         return sokkelo[k.getY()][k.getX()] == Ruutu.ESTE;
     }
 
