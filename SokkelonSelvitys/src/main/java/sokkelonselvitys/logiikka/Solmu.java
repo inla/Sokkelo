@@ -1,66 +1,58 @@
 package sokkelonselvitys.logiikka;
 
-import sokkelonselvitys.logiikka.tietorakenteet.Lista;
-
 /**
- * Solmulla on koordinaatit, vanhempi, tila ja naapureita.
+ * Solmulla on koordinaatit ja tila, sekä tieto edellisestä solmusta ja reitin
+ * pituudesta aloitussolmusta itseensä.
  *
  * @author inka
  */
 public class Solmu {
 
-    private int x;
-    private int y;
-    private Solmu vanhempi;
+    Koordinaatit koordinaatit;
+    private Solmu edellinen;
     private SolmunTila tila;
-    private Lista<Solmu> mahdollisetNaapurit;
+    private int kuljetunReitinPituus;
 
     /**
      * Konstruktori.
      *
-     * @param x x-koorinaatti
-     * @param y y-koordinaatti
-     * @param vanhempi solmu, josta päädyttiin tähän solmuun
+     * @param koord solmun koordinaatit
+     * @param edellinen solmu, josta päädyttiin tähän solmuun
+     * @param kuljetunReitinPituus reitti aloitussolmusta tähän solmuun
      */
-    public Solmu(int x, int y, Solmu vanhempi) {
-        this.x = x;
-        this.y = y;
-        this.vanhempi = vanhempi;
+    public Solmu(Koordinaatit koord, Solmu edellinen, int kuljetunReitinPituus) {
+        this.koordinaatit = koord;
+        this.edellinen = edellinen;
         this.tila = null;
-        this.mahdollisetNaapurit = naapurit();
+        this.kuljetunReitinPituus = kuljetunReitinPituus;
+    }
+
+    public Koordinaatit getKoordinaatit() {
+        return koordinaatit;
     }
 
     public int getX() {
-        return x;
+        return this.koordinaatit.getX();
     }
 
     public int getY() {
-        return y;
+        return this.koordinaatit.getY();
     }
 
-    public Solmu getVanhempi() {
-        return vanhempi;
+    public Solmu getEdellinen() {
+        return edellinen;
     }
 
     public SolmunTila getTila() {
         return tila;
     }
 
-    public Lista<Solmu> getMahdollisetNaapurit() {
-        return mahdollisetNaapurit;
+    public int getKuljetunReitinPituus() {
+        return kuljetunReitinPituus;
     }
 
     public void setTila(SolmunTila tila) {
         this.tila = tila;
-    }
-
-    private Lista<Solmu> naapurit() {
-        Lista<Solmu> naapurit = new Lista<>();
-        naapurit.lisaa(new Solmu(this.x - 1, this.y, this));
-        naapurit.lisaa(new Solmu(this.x + 1, this.y, this));
-        naapurit.lisaa(new Solmu(this.x, this.y - 1, this));
-        naapurit.lisaa(new Solmu(this.x, this.y + 1, this));
-        return naapurit;
     }
 
 }

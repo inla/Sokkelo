@@ -39,16 +39,15 @@ public abstract class Algoritmi {
      * @return lista naapureista
      */
     public Lista<Solmu> kasiteltavanSolmunNaapurit(Solmu solmu) {
-        Lista<Solmu> kaikki = solmu.getMahdollisetNaapurit();
         Lista<Solmu> naapurit = new Lista<>();
 
-        for (Solmu s : kaikki) {
-            int koordX = s.getX();
-            int koordY = s.getY();
-            if (!onkoRajojenSisalla(koordX, koordY) || onkoEste(koordX, koordY)) {
+        for (Koordinaatit.Suunta suunta : Koordinaatit.Suunta.values()) {
+            Koordinaatit k = solmu.getKoordinaatit().naapuriKoordinaatit(suunta);
+            if (!onkoRajojenSisalla(k) || onkoEste(k)) {
                 continue;
             }
-            naapurit.lisaa(s);
+            naapurit.lisaa(new Solmu(k, solmu, solmu.getKuljetunReitinPituus() + 1));
+            //kuljetunReitinPituus + solmuunsaapumiskustannus (hidaste/normi)?   ^
         }
 
         return naapurit;
@@ -66,15 +65,18 @@ public abstract class Algoritmi {
         return sokkelo;
     }
 
-    private boolean onkoRajojenSisalla(int x, int y) {
-        if (x < 0 || y < 0 || x >= sokkelo[0].length || y >= sokkelo.length) {
+    private boolean onkoRajojenSisalla(Koordinaatit k) {
+        if (k.getX() < 0 || k.getY() < 0 || k.getX() >= sokkelo[0].length || k.getY() >= sokkelo.length) {
             return false;
         }
         return true;
     }
 
-    private boolean onkoEste(int x, int y) {
-        return sokkelo[y][x] == Ruutu.ESTE;
+    private boolean onkoEste(Koordinaatit k) {
+        return sokkelo[k.getY()][k.getX()] == Ruutu.ESTE;
     }
 
+    protected void maaliLoydetty() {
+
+    }
 }
