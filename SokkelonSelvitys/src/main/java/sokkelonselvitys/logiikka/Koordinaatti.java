@@ -1,6 +1,7 @@
 package sokkelonselvitys.logiikka;
 
 /**
+ * Koordinaatti-olio muodostuu x- ja y-koordinaateista.
  *
  * @author inka
  */
@@ -41,9 +42,10 @@ public class Koordinaatti {
         }
         return null;
     }
-/**
- * Määrittelee mahdolliset suunnat, mihin koordinaattipisteestä voi liikkua.
- */
+
+    /**
+     * Määrittelee mahdolliset suunnat, mihin koordinaattipisteestä voi liikkua.
+     */
     public enum Suunta {
 
         ALAS, YLOS, OIKEA, VASEN
