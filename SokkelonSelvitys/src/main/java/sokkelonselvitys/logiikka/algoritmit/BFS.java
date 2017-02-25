@@ -42,18 +42,18 @@ public class BFS extends Algoritmi {
                 break;
             }
 
-            tutkittava.setTila(SolmunTila.KASITTELYSSA);
+            //tutkittava.setTila(SolmunTila.KASITTELYSSA);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 if (s.getTila() == null) {
                     tutkittavat.lisaa(s);
-                    s.setTila(SolmunTila.LOYDETTY);
+                    //s.setTila(SolmunTila.LOYDETTY);
                     this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.LOYDETTY;
                 }
             }
 
-            tutkittava.setTila(SolmunTila.KASITELTY);
+            //tutkittava.setTila(SolmunTila.KASITELTY);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
     }

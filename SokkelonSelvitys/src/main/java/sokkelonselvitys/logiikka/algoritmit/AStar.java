@@ -57,7 +57,7 @@ public class AStar extends Algoritmi {
                 break;
             }
 
-            tutkittava.setTila(SolmunTila.KASITTELYSSA); //tarviiko enää?
+            //tutkittava.setTila(SolmunTila.KASITTELYSSA);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
@@ -66,12 +66,12 @@ public class AStar extends Algoritmi {
                     continue;
                 }
                 lyhimmatReitit[s.getY()][s.getX()] = s.getKuljetunReitinPituus();
-                s.setTila(SolmunTila.LOYDETTY); //?
+                //s.setTila(SolmunTila.LOYDETTY);
                 this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
 
-            tutkittava.setTila(SolmunTila.KASITELTY); //?
+            //tutkittava.setTila(SolmunTila.KASITELTY);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
 
