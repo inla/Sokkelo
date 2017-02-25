@@ -27,6 +27,11 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
 
     private JButton simulaatioNappula;
 
+    /**
+     * Konstruktori.
+     *
+     * @param simulaatio
+     */
     public ValikkoPaneeli(Simulaatio simulaatio) {
         this.simulaatio = simulaatio;
         this.kuuntelija = new TapahtumanKuuntelija(this.simulaatio, this);

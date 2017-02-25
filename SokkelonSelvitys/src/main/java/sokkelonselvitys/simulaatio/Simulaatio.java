@@ -8,6 +8,7 @@ import sokkelonselvitys.logiikka.algoritmit.AStar;
 import sokkelonselvitys.logiikka.*;
 
 /**
+ * Luo simulaation valitulle algoritmille ja sokkelolle.
  *
  * @author inka
  */
@@ -25,6 +26,9 @@ public class Simulaatio {
     private boolean kaynnissa;
     private AbstraktiPaneeli paneeli;
 
+    /**
+     * Oletuksena on A*-algoritmi ja helppo sokkelo.
+     */
     public Simulaatio() {
         this.sokkeloTehdas = new SokkeloTehdas();
         this.sokkelo = sokkeloTehdas.getHelppo();
@@ -45,6 +49,9 @@ public class Simulaatio {
         }
     }
 
+    /**
+     * Käynnistää simulaation.
+     */
     public void haeReitti() {
         luoAlgoritmi();
         this.kaynnissa = true;
@@ -52,6 +59,9 @@ public class Simulaatio {
 
     }
 
+    /**
+     * Lopettaa simulaation.
+     */
     public void lopetaHaku() {
         this.kaynnissa = false;
 
@@ -77,7 +87,6 @@ public class Simulaatio {
         return algoritmi;
     }
 
-    
     public int getNopeus() {
         return nopeus;
     }

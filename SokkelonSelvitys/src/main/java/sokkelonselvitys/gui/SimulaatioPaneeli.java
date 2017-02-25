@@ -16,6 +16,12 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
     private Simulaatio simulaatio;
     private int ruudunKoko;
 
+    /**
+     * Konstruktori.
+     *
+     * @param simulaatio piirrettävä simulaatio
+     * @param ruudunKoko yksittäisen ruudun koko
+     */
     public SimulaatioPaneeli(Simulaatio simulaatio, int ruudunKoko) {
         this.simulaatio = simulaatio;
         this.ruudunKoko = ruudunKoko;
@@ -74,10 +80,10 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
 
     @Override
     public void run() {
-        while(true) {
+        while (true) {
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.getMessage();
             }
             repaint();

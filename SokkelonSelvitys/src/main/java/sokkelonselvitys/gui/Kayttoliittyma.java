@@ -20,6 +20,11 @@ public class Kayttoliittyma implements Runnable {
     private AbstraktiPaneeli simulaatioPaneeli;
     private AbstraktiPaneeli valikkoPaneeli;
 
+    /**
+     * Konstruktori.
+     *
+     * @param simulaatio
+     */
     public Kayttoliittyma(Simulaatio simulaatio) {
         this.simulaatio = simulaatio;
     }

@@ -6,6 +6,8 @@ import sokkelonselvitys.simulaatio.Simulaatio;
 import sokkelonselvitys.logiikka.algoritmit.AlgoritmiTyyppi;
 
 /**
+ * TapahtumanKuuntelija kuntelee valikkopaneelissa tehtyjä valintoja ja tekee
+ * niitä vastaavia muutoksia simulaatioon.
  *
  * @author inka
  */
@@ -14,6 +16,12 @@ public class TapahtumanKuuntelija implements ActionListener {
     private Simulaatio simulaatio;
     private ValikkoPaneeli valikko;
 
+    /**
+     * Konstruktori.
+     *
+     * @param simulaatio simulaatio, jonka muuttujia tarvittaessa muutetaan
+     * @param valikko kuunneltava valikkopaneeli
+     */
     public TapahtumanKuuntelija(Simulaatio simulaatio, ValikkoPaneeli valikko) {
         this.simulaatio = simulaatio;
         this.valikko = valikko;

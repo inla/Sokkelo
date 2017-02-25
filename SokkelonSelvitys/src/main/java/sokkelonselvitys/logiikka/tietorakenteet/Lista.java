@@ -101,6 +101,7 @@ public class Lista<E> implements Iterable<E> {
     }
 
     private class Iteraattori implements Iterator<E> {
+
         int indeksi;
         int viimeeksiPalautettu = -1;
 

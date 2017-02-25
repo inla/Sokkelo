@@ -12,7 +12,7 @@ import sokkelonselvitys.logiikka.tietorakenteet.Lista;
  *
  * @author inka
  */
-public abstract class Algoritmi{
+public abstract class Algoritmi {
 
     protected Ruutu[][] sokkelo;
     protected Koordinaatti aloitus;

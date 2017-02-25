@@ -14,7 +14,7 @@ public class Solmu {
     private int kuljetunReitinPituus;
 
     /**
-     * Konstruktori.
+     * Konstruktori. Solmun tila on null kunnes algoritmi löytää sen.
      *
      * @param koord solmun koordinaatit
      * @param edellinen solmu, josta päädyttiin tähän solmuun
