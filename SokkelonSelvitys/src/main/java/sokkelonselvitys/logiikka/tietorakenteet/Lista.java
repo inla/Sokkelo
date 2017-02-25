@@ -1,6 +1,7 @@
 package sokkelonselvitys.logiikka.tietorakenteet;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Tietorakenne lista. Listaan voidaan lisätä ja siitä voi hakea ja poistaa
@@ -96,7 +97,27 @@ public class Lista<E> implements Iterable<E> {
 
     @Override
     public Iterator<E> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new Iteraattori();
+    }
+
+    private class Iteraattori implements Iterator<E> {
+        int indeksi;
+        int viimeeksiPalautettu = -1;
+
+        @Override
+        public boolean hasNext() {
+            return indeksi < koko;
+        }
+
+        @Override
+        public E next() {
+            if (hasNext()) {
+                int i = indeksi;
+                indeksi++;
+                return (E) lista[viimeeksiPalautettu = i];
+            }
+            throw new NoSuchElementException();
+        }
     }
 
 }

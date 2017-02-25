@@ -3,7 +3,7 @@ package sokkelonselvitys.logiikka.tietorakenteet;
 import java.util.Comparator;
 
 /**
- * Minimikeko pitää alkiot pienuusjärjestyksessä.
+ * Minimikeko pitää alkiot pienuusjärjestyksessä. Indeksointi alkaa ykkösestä.
  *
  * @author inka
  * @param <E> talletettavien alkioiden tyyppi
@@ -45,10 +45,10 @@ public class Minimikeko<E> {
         if (tyhja()) {
             return null;
         }
-        E min = (E) this.keko[0];
-        this.keko[0] = this.keko[this.koko - 1];
+        E min = (E) this.keko[1];
+        this.keko[1] = this.keko[this.koko - 1];
         this.koko--;
-        heapify(0);
+        heapify(1);
         return min;
     }
 
@@ -63,9 +63,9 @@ public class Minimikeko<E> {
             kasvataKekoa();
         }
 
-        int i = this.koko - 1;
+        int i = this.koko;
         this.keko[i] = lisattava;
-        while (i > 0 && pienempi(i, vanhempi(i)) == i) {
+        while (i > 1 && pienempi(i, vanhempi(i)) == i) {
             vaihda(i, vanhempi(i));
             i = vanhempi(i);
         }
@@ -87,6 +87,10 @@ public class Minimikeko<E> {
     private void heapify(int indeksi) {
         int oikea = oikeaLapsi(indeksi);
         int vasen = vasenLapsi(indeksi);
+
+        if (this.keko[oikea] == null && this.keko[vasen] == null) {
+            return;
+        }
 
         if (oikea <= this.koko) {
             int pienin = pienempi(oikea, vasen);
@@ -127,6 +131,14 @@ public class Minimikeko<E> {
 
     private boolean taysi() {
         return this.koko == this.maxKoko;
+    }
+
+    public int getMaxKoko() {
+        return maxKoko;
+    }
+
+    public int getKoko() {
+        return koko;
     }
 
 }

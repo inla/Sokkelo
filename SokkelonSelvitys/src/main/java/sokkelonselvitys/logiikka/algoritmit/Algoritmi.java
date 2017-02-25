@@ -1,5 +1,9 @@
-package sokkelonselvitys.logiikka;
+package sokkelonselvitys.logiikka.algoritmit;
 
+import sokkelonselvitys.logiikka.Koordinaatti;
+import sokkelonselvitys.logiikka.Ruutu;
+import sokkelonselvitys.logiikka.Solmu;
+import sokkelonselvitys.logiikka.SolmunTila;
 import sokkelonselvitys.logiikka.tietorakenteet.Lista;
 
 /**
@@ -8,11 +12,14 @@ import sokkelonselvitys.logiikka.tietorakenteet.Lista;
  *
  * @author inka
  */
-public abstract class Algoritmi {
+public abstract class Algoritmi{
 
     protected Ruutu[][] sokkelo;
-    protected Solmu aloitus;
-    protected Solmu maali;
+    protected Koordinaatti aloitus;
+    protected Koordinaatti maali;
+    protected int leveys;
+    protected int korkeus;
+    protected SolmunTila[][] solmujenTilaRuudukko;
 
     /**
      * Luo uuden algoritmin.
@@ -21,10 +28,13 @@ public abstract class Algoritmi {
      * @param aloitus aloitussolmu
      * @param maali maalisolmu
      */
-    public Algoritmi(Ruutu[][] sokkelo, Solmu aloitus, Solmu maali) {
+    public Algoritmi(Ruutu[][] sokkelo, Koordinaatti aloitus, Koordinaatti maali) {
         this.sokkelo = sokkelo;
         this.aloitus = aloitus;
         this.maali = maali;
+        this.leveys = this.sokkelo[0].length;
+        this.korkeus = this.sokkelo.length;
+        this.solmujenTilaRuudukko = new SolmunTila[korkeus][leveys];
     }
 
     /**
@@ -46,23 +56,31 @@ public abstract class Algoritmi {
             if (!onkoRajojenSisalla(k) || onkoEste(k)) {
                 continue;
             }
-            naapurit.lisaa(new Solmu(k, solmu, solmu.getKuljetunReitinPituus() + 1));
-            //kuljetunReitinPituus + solmuunsaapumiskustannus (hidaste/normi)?   ^
+            naapurit.lisaa(new Solmu(k, solmu, solmu.getKuljetunReitinPituus() + sokkelo[k.getY()][k.getX()].getHidastus()));
+            //kuljetunReitinPituus + solmuunsaapumiskustannus (hidaste/normi)  ---^
         }
 
         return naapurit;
     }
 
-    public Solmu getAloitus() {
+    public Koordinaatti getAloitus() {
         return aloitus;
     }
 
-    public Solmu getMaali() {
+    public Koordinaatti getMaali() {
         return maali;
     }
 
     public Ruutu[][] getSokkelo() {
         return sokkelo;
+    }
+
+    public SolmunTila[][] getSolmujenTilaRuudukko() {
+        return solmujenTilaRuudukko;
+    }
+
+    public SolmunTila getSolmunTila(int x, int y) {
+        return this.solmujenTilaRuudukko[y][x];
     }
 
     private boolean onkoRajojenSisalla(Koordinaatti k) {

@@ -1,6 +1,10 @@
-package sokkelonselvitys.logiikka;
+package sokkelonselvitys.logiikka.algoritmit;
 
 import java.util.Comparator;
+import sokkelonselvitys.logiikka.Koordinaatti;
+import sokkelonselvitys.logiikka.Ruutu;
+import sokkelonselvitys.logiikka.Solmu;
+import sokkelonselvitys.logiikka.SolmunTila;
 import sokkelonselvitys.logiikka.tietorakenteet.Minimikeko;
 
 /**
@@ -20,7 +24,7 @@ public class AStar extends Algoritmi {
      * @param aloitus aloitussolmu
      * @param maali maalisolmu
      */
-    public AStar(Ruutu[][] sokkelo, Solmu aloitus, Solmu maali) {
+    public AStar(Ruutu[][] sokkelo, Koordinaatti aloitus, Koordinaatti maali) {
         super(sokkelo, aloitus, maali);
         this.lyhimmatReitit = new int[this.sokkelo.length][this.sokkelo.length];
         alustaReitit();
@@ -43,17 +47,18 @@ public class AStar extends Algoritmi {
 
     @Override
     public void suorita() {
-        this.tutkittavat.lisaa(aloitus);
+        this.tutkittavat.lisaa(new Solmu(aloitus, null, 0));
 
         while (!tutkittavat.tyhja()) {
             Solmu tutkittava = this.tutkittavat.otaPienin();
 
-            if (tutkittava.getKoordinaatit().equals(this.maali.getKoordinaatit())) {
+            if (tutkittava.getKoordinaatit().equals(this.maali)) {
                 maaliLoydetty(tutkittava);
                 break;
             }
 
-            tutkittava.setTila(SolmunTila.KASITTELYSSA);
+            tutkittava.setTila(SolmunTila.KASITTELYSSA); //tarviiko enää?
+            this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 //jos solmu on jo löydetty ja siihen tullaan nyt pidempää reittiä -> ei tehdä mitään
@@ -61,11 +66,13 @@ public class AStar extends Algoritmi {
                     continue;
                 }
                 lyhimmatReitit[s.getY()][s.getX()] = s.getKuljetunReitinPituus();
-                s.setTila(SolmunTila.LOYDETTY);
+                s.setTila(SolmunTila.LOYDETTY); //?
+                this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
 
-            tutkittava.setTila(SolmunTila.KASITELTY);
+            tutkittava.setTila(SolmunTila.KASITELTY); //?
+            this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
 
     }
@@ -81,4 +88,5 @@ public class AStar extends Algoritmi {
     private int etaisyysArvioMaaliin(Solmu s) {
         return Math.abs(s.getX() - this.maali.getX()) + Math.abs(s.getY() - this.maali.getY());
     }
+
 }
