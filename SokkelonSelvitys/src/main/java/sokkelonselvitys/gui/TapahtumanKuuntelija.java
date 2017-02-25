@@ -2,7 +2,7 @@ package sokkelonselvitys.gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import sokkelonselvitys.Simulaatio;
+import sokkelonselvitys.simulaatio.Simulaatio;
 import sokkelonselvitys.logiikka.algoritmit.AlgoritmiTyyppi;
 
 /**

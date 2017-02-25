@@ -2,7 +2,7 @@ package sokkelonselvitys.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import sokkelonselvitys.Simulaatio;
+import sokkelonselvitys.simulaatio.Simulaatio;
 import sokkelonselvitys.logiikka.Ruutu;
 import sokkelonselvitys.logiikka.SolmunTila;
 

@@ -5,7 +5,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import sokkelonselvitys.Simulaatio;
+import sokkelonselvitys.simulaatio.Simulaatio;
 
 /**
  * Valikkopaneelista voi valita simulaatiossa käytettävän sokkelon ja

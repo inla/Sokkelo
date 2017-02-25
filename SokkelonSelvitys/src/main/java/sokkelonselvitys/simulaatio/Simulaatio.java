@@ -1,4 +1,4 @@
-package sokkelonselvitys;
+package sokkelonselvitys.simulaatio;
 
 import sokkelonselvitys.gui.AbstraktiPaneeli;
 import sokkelonselvitys.logiikka.algoritmit.AlgoritmiTyyppi;

@@ -1,4 +1,4 @@
-package sokkelonselvitys;
+package sokkelonselvitys.simulaatio;
 
 import javax.swing.SwingUtilities;
 import sokkelonselvitys.gui.Kayttoliittyma;
