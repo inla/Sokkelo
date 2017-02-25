@@ -3,7 +3,7 @@ package sokkelonselvitys.logiikka.tietorakenteet;
 import java.util.Comparator;
 
 /**
- * Minimikeko pitää alkiot pienuusjärjestyksessä. Indeksointi alkaa ykkösestä.
+ * Minimikeko pitää alkiot pienuusjärjestyksessä.
  *
  * @author inka
  * @param <E> talletettavien alkioiden tyyppi
