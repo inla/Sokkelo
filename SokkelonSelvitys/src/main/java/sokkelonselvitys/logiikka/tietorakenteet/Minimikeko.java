@@ -45,10 +45,10 @@ public class Minimikeko<E> {
         if (tyhja()) {
             return null;
         }
-        E min = (E) this.keko[1];
-        this.keko[1] = this.keko[this.koko - 1];
+        E min = (E) this.keko[0];
+        this.keko[0] = this.keko[this.koko - 1];
         this.koko--;
-        heapify(1);
+        heapify(0);
         return min;
     }
 
@@ -63,9 +63,9 @@ public class Minimikeko<E> {
             kasvataKekoa();
         }
 
-        int i = this.koko;
+        int i = this.koko - 1;
         this.keko[i] = lisattava;
-        while (i > 1 && pienempi(i, vanhempi(i)) == i) {
+        while (i > 0 && pienempi(i, vanhempi(i)) == i) {
             vaihda(i, vanhempi(i));
             i = vanhempi(i);
         }
@@ -88,6 +88,10 @@ public class Minimikeko<E> {
         int oikea = oikeaLapsi(indeksi);
         int vasen = vasenLapsi(indeksi);
 
+        if (oikea > this.maxKoko || vasen > this.maxKoko) {
+            return;
+        }
+        
         if (this.keko[oikea] == null && this.keko[vasen] == null) {
             return;
         }
@@ -118,15 +122,15 @@ public class Minimikeko<E> {
     }
 
     private int vanhempi(int indeksi) {
-        return indeksi / 2;
+        return (indeksi - 1) / 2;
     }
 
     private int vasenLapsi(int indeksi) {
-        return 2 * indeksi;
+        return 2 * indeksi + 1;
     }
 
     private int oikeaLapsi(int indeksi) {
-        return 2 * indeksi + 1;
+        return 2 * indeksi + 2;
     }
 
     private boolean taysi() {
