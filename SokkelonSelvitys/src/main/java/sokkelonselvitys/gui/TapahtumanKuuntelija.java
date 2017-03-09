@@ -41,7 +41,13 @@ public class TapahtumanKuuntelija implements ActionListener {
         } else if (o.equals(valikko.getVaikea())) {
             this.simulaatio.setSokkelo(this.simulaatio.getSokkeloTehdas().getVaikea());
         } else if (o.equals(valikko.getSimulaatioNappula())) {
-            this.simulaatio.haeReitti();
+            if (this.simulaatio.onKaynnissa()) {
+                this.simulaatio.lopetaHaku();
+            } else {
+                this.simulaatio.haeReitti();
+            }
+            this.valikko.paivitaNappulat();
+            
         }
         this.simulaatio.getPaneeli().repaint();
     }

@@ -23,7 +23,7 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
      * @param ruudunKoko yksittäisen ruudun koko
      */
     public SimulaatioPaneeli(Simulaatio simulaatio, int ruudunKoko) {
-        this.simulaatio = simulaatio;
+        super(simulaatio);
         this.ruudunKoko = ruudunKoko;
     }
 
@@ -32,9 +32,14 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
         super.paintComponent(g);
 
         piirraSokkelo(g);
+        
         if (this.simulaatio.getAlgoritmi() != null) {
             piirraHaku(g);
+            if (this.simulaatio.onValmis()) {
+                piirraReitti(g);
+            }
         }
+        
         piirraAloitusJaMaali(g);
     }
 
@@ -73,9 +78,16 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
         g.fill3DRect(maaliX * ruudunKoko + ruudunKoko / 6, maaliY * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
     }
 
-    @Override
-    public void repaint() {
-        super.repaint();
+    private void piirraReitti(Graphics g) {
+        for (int y = 0; y < simulaatio.getKorkeus(); y++) {
+            for (int x = 0; x < simulaatio.getLeveys(); x++) {
+                SolmunTila s = this.simulaatio.getSolmunTila(x, y);
+                if (s == SolmunTila.REITTI) {
+                    g.setColor(s.getVari());
+                    g.fill3DRect(x * ruudunKoko + ruudunKoko / 6, y * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
+                }
+            }
+        }
     }
 
     @Override
@@ -84,10 +96,14 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                e.getMessage();
+                System.out.println(e.getMessage());
             }
             repaint();
         }
     }
 
+    @Override
+    public void paivita() {
+        super.repaint();
+    }
 }

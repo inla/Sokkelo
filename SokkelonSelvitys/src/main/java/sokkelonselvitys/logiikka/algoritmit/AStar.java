@@ -46,10 +46,10 @@ public class AStar extends Algoritmi {
     }
 
     @Override
-    public void suorita() {
+    public void run() {
         this.tutkittavat.lisaa(new Solmu(aloitus, null, 0));
 
-        while (!tutkittavat.tyhja()) {
+        while (!tutkittavat.tyhja() && this.jatketaan) {
             Solmu tutkittava = this.tutkittavat.otaPienin();
 
             if (tutkittava.getKoordinaatit().equals(this.maali)) {
@@ -60,14 +60,17 @@ public class AStar extends Algoritmi {
             //tutkittava.setTila(SolmunTila.KASITTELYSSA);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
+            hidasta();
+            
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 //jos solmu on jo löydetty ja siihen tullaan nyt pidempää reittiä -> ei tehdä mitään
-                if (s.getTila() != null && lyhimmatReitit[s.getY()][s.getX()] <= s.getKuljetunReitinPituus()) {
+                if (this.solmujenTilaRuudukko[s.getY()][s.getX()] != null 
+                        && lyhimmatReitit[s.getY()][s.getX()] <= s.getKuljetunReitinPituus()) {
                     continue;
                 }
                 lyhimmatReitit[s.getY()][s.getX()] = s.getKuljetunReitinPituus();
                 //s.setTila(SolmunTila.LOYDETTY);
-                this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.LOYDETTY;
+                this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
 

@@ -12,7 +12,7 @@ import sokkelonselvitys.logiikka.tietorakenteet.Lista;
  *
  * @author inka
  */
-public abstract class Algoritmi {
+public abstract class Algoritmi implements Runnable {
 
     protected Ruutu[][] sokkelo;
     protected Koordinaatti aloitus;
@@ -20,6 +20,9 @@ public abstract class Algoritmi {
     protected int leveys;
     protected int korkeus;
     protected SolmunTila[][] solmujenTilaRuudukko;
+    protected Solmu reittiMaalille;
+    protected boolean valmis;
+    protected boolean jatketaan;
 
     /**
      * Luo uuden algoritmin.
@@ -35,13 +38,24 @@ public abstract class Algoritmi {
         this.leveys = this.sokkelo[0].length;
         this.korkeus = this.sokkelo.length;
         this.solmujenTilaRuudukko = new SolmunTila[korkeus][leveys];
+        this.valmis = false;
+        this.jatketaan = true;
     }
 
     /**
      * Alaluokat toteuttavat tämän omilla tavoillaan.
      */
-    public abstract void suorita();
+    @Override
+    public abstract void run();
 
+    protected void hidasta() {
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    
     /**
      * Etsii käsiteltävän solmun naapurit.
      *
@@ -63,6 +77,21 @@ public abstract class Algoritmi {
         return naapurit;
     }
 
+    /**
+     * Lopettaa alggoritmin suorituksen.
+     */
+    public void lopeta() {
+        this.jatketaan = false;
+    }
+    
+    /**
+     * Kertoo, onko algoritmi löytänyt reitin maaliin.
+     * @return true, jos reitti on löytynyt
+     */
+    public boolean onValmis() {
+        return valmis;
+    }
+    
     public Koordinaatti getAloitus() {
         return aloitus;
     }
@@ -83,6 +112,10 @@ public abstract class Algoritmi {
         return this.solmujenTilaRuudukko[y][x];
     }
 
+    public Solmu getReittiMaalille() {
+        return reittiMaalille;
+    }
+
     private boolean onkoRajojenSisalla(Koordinaatti k) {
         if (k.getX() < 0 || k.getY() < 0 || k.getX() >= sokkelo[0].length || k.getY() >= sokkelo.length) {
             return false;
@@ -95,6 +128,19 @@ public abstract class Algoritmi {
     }
 
     protected void maaliLoydetty(Solmu solmu) {
-        //solmun tilaksi reitti ?
+        this.valmis = true;
+        this.reittiMaalille = solmu;
+        while(solmu != null) {
+            this.solmujenTilaRuudukko[solmu.getY()][solmu.getX()] = SolmunTila.REITTI;
+            solmu.getEdellinen();
+        }
+    }
+    
+    /**
+     * Kertoo löydetyn reitin pituuden alkusolmusta maalisolmuun.
+     * @return reitin pituus
+     */
+    public int reitinPituus() {
+        return this.reittiMaalille.getKuljetunReitinPituus();
     }
 }

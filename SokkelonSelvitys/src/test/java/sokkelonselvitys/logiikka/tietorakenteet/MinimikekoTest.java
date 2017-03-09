@@ -27,7 +27,6 @@ public class MinimikekoTest {
 
     @Before
     public void setUp() {
-        
         this.keko = new Minimikeko<>(c);
     }
 
@@ -60,5 +59,39 @@ public class MinimikekoTest {
         assertEquals(2, keko.getKoko());
         keko.otaPienin();
         assertEquals(1, keko.getKoko());
+    }
+    
+    @Test
+    public void testOtaPieninPalauttaaPienimmanAlkionKeosta() {
+        this.keko.lisaa(0);
+        this.keko.lisaa(5);
+        this.keko.lisaa(1);
+        assertEquals(0, (int)keko.otaPienin());
+    }
+    
+    @Test
+    public void testKekoOnOikeassaJarjestyksessa() {
+        this.keko.lisaa(2);
+        this.keko.lisaa(7);
+        this.keko.lisaa(3);
+        this.keko.lisaa(9);
+        this.keko.lisaa(0);
+        this.keko.lisaa(4);
+        this.keko.lisaa(6);
+        this.keko.lisaa(8);
+        this.keko.lisaa(1);
+        this.keko.lisaa(5);
+        
+        assertEquals(0, (int) keko.otaPienin());
+        assertEquals(1, (int) keko.otaPienin());
+        assertEquals(2, (int) keko.otaPienin());
+        assertEquals(3, (int) keko.otaPienin());
+        assertEquals(4, (int) keko.otaPienin());
+        assertEquals(5, (int) keko.otaPienin());
+        assertEquals(6, (int) keko.otaPienin());
+        assertEquals(7, (int) keko.otaPienin());
+        assertEquals(8, (int) keko.otaPienin());
+        assertEquals(9, (int) keko.otaPienin());
+        
     }
 }

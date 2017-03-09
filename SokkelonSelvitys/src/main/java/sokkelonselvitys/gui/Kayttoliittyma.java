@@ -17,8 +17,8 @@ public class Kayttoliittyma implements Runnable {
     private final int ruudunKoko = 30;
     private JFrame frame;
     private Simulaatio simulaatio;
-    private AbstraktiPaneeli simulaatioPaneeli;
-    private AbstraktiPaneeli valikkoPaneeli;
+    private SimulaatioPaneeli simulaatioPaneeli;
+    private ValikkoPaneeli valikkoPaneeli;
 
     /**
      * Konstruktori.
@@ -56,11 +56,11 @@ public class Kayttoliittyma implements Runnable {
         this.valikkoPaneeli.setPreferredSize(new Dimension(leveys / 2, pituus));
     }
 
-    public AbstraktiPaneeli getSimulaatioPaneeli() {
+    public SimulaatioPaneeli getSimulaatioPaneeli() {
         return simulaatioPaneeli;
     }
 
-    public AbstraktiPaneeli getValikkoPaneeli() {
+    public ValikkoPaneeli getValikkoPaneeli() {
         return valikkoPaneeli;
     }
 

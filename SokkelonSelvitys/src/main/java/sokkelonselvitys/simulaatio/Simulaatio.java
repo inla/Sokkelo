@@ -1,6 +1,7 @@
 package sokkelonselvitys.simulaatio;
 
-import sokkelonselvitys.gui.AbstraktiPaneeli;
+import sokkelonselvitys.gui.SimulaatioPaneeli;
+import sokkelonselvitys.gui.ValikkoPaneeli;
 import sokkelonselvitys.logiikka.algoritmit.AlgoritmiTyyppi;
 import sokkelonselvitys.logiikka.algoritmit.Algoritmi;
 import sokkelonselvitys.logiikka.algoritmit.BFS;
@@ -20,11 +21,11 @@ public class Simulaatio {
     private Koordinaatti maali;
     private AlgoritmiTyyppi algoritmiTyyppi;
     private Algoritmi algoritmi;
-    private int nopeus;
     private int leveys;
     private int korkeus;
     private boolean kaynnissa;
-    private AbstraktiPaneeli paneeli;
+    private SimulaatioPaneeli simulaatioPaneeli;
+    private ValikkoPaneeli valikkoPaneeli;
 
     /**
      * Oletuksena on A*-algoritmi ja helppo sokkelo.
@@ -35,7 +36,6 @@ public class Simulaatio {
         this.alku = new Koordinaatti(1, 2);
         this.maali = new Koordinaatti(14, 12);
         this.algoritmiTyyppi = AlgoritmiTyyppi.ASTAR;
-        this.nopeus = 0; //?
         this.leveys = this.sokkelo[0].length;
         this.korkeus = this.sokkelo.length;
         this.kaynnissa = false;
@@ -49,14 +49,23 @@ public class Simulaatio {
         }
     }
 
+    public boolean onKaynnissa() {
+        return kaynnissa;
+    }
+
+    public boolean onValmis() {
+        return this.algoritmi.onValmis();
+    }
     /**
      * Käynnistää simulaation.
      */
     public void haeReitti() {
         luoAlgoritmi();
         this.kaynnissa = true;
-        this.algoritmi.suorita();
-
+//        this.algoritmi.run();
+        new Thread(algoritmi).start();
+//        this.paneeli.repaint();
+        this.valikkoPaneeli.paivitaNappulat();
     }
 
     /**
@@ -64,6 +73,7 @@ public class Simulaatio {
      */
     public void lopetaHaku() {
         this.kaynnissa = false;
+        this.algoritmi.lopeta();
 
     }
 
@@ -85,14 +95,6 @@ public class Simulaatio {
 
     public Algoritmi getAlgoritmi() {
         return algoritmi;
-    }
-
-    public int getNopeus() {
-        return nopeus;
-    }
-
-    public void setNopeus(int nopeus) {
-        this.nopeus = nopeus;
     }
 
     public int getLeveys() {
@@ -123,12 +125,16 @@ public class Simulaatio {
         return sokkeloTehdas;
     }
 
-    public AbstraktiPaneeli getPaneeli() {
-        return paneeli;
+    public SimulaatioPaneeli getPaneeli() {
+        return simulaatioPaneeli;
     }
 
-    public void setPaneeli(AbstraktiPaneeli paneeli) {
-        this.paneeli = paneeli;
+    public void setSimulaatioPaneeli(SimulaatioPaneeli paneeli) {
+        this.simulaatioPaneeli = paneeli;
+    }
+
+    public void setValikkoPaneeli(ValikkoPaneeli valikkoPaneeli) {
+        this.valikkoPaneeli = valikkoPaneeli;
     }
 
 }

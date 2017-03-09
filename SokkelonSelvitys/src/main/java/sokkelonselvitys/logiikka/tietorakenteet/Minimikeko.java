@@ -88,7 +88,7 @@ public class Minimikeko<E> {
         int oikea = oikeaLapsi(indeksi);
         int vasen = vasenLapsi(indeksi);
 
-        if (oikea > this.maxKoko || vasen > this.maxKoko) {
+        if (oikea >= this.maxKoko || vasen >= this.maxKoko) {
             return;
         }
         

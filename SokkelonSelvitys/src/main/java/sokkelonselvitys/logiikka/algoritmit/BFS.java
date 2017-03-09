@@ -31,10 +31,10 @@ public class BFS extends Algoritmi {
      * Algoritmin toiminta.
      */
     @Override
-    public void suorita() {
+    public void run() {
         tutkittavat.lisaa(new Solmu(aloitus, null, 0));
 
-        while (!tutkittavat.tyhja()) {
+        while (!tutkittavat.tyhja() && this.jatketaan) {
             Solmu tutkittava = tutkittavat.ota();
 
             if (tutkittava.getKoordinaatit().equals(maali)) {
@@ -45,11 +45,13 @@ public class BFS extends Algoritmi {
             //tutkittava.setTila(SolmunTila.KASITTELYSSA);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
+            hidasta();
+            
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
-                if (s.getTila() == null) {
+                if (this.solmujenTilaRuudukko[s.getY()][s.getX()] == null) {
                     tutkittavat.lisaa(s);
                     //s.setTila(SolmunTila.LOYDETTY);
-                    this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.LOYDETTY;
+                    this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
                 }
             }
 

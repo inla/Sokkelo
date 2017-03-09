@@ -33,7 +33,7 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
      * @param simulaatio
      */
     public ValikkoPaneeli(Simulaatio simulaatio) {
-        this.simulaatio = simulaatio;
+        super(simulaatio);
         this.kuuntelija = new TapahtumanKuuntelija(this.simulaatio, this);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         luoKomponentit();
@@ -94,7 +94,24 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
         this.simulaatioNappula = new JButton("Aloita simulaatio");
         simulaatioNappula.addActionListener(this.kuuntelija);
         add(simulaatioNappula);
+    }
 
+    public void paivitaNappulat() {
+        if (this.simulaatio.onKaynnissa()) {
+            this.helppo.setEnabled(false);
+            this.keskitaso.setEnabled(false);
+            this.vaikea.setEnabled(false);
+            this.aStar.setEnabled(false);
+            this.bfs.setEnabled(false);
+            this.simulaatioNappula.setText("Lopeta simulaatio");
+        } else {
+            this.helppo.setEnabled(true);
+            this.keskitaso.setEnabled(true);
+            this.vaikea.setEnabled(true);
+            this.aStar.setEnabled(true);
+            this.bfs.setEnabled(true);
+            this.simulaatioNappula.setText("Aloita simulaatio");
+        }
     }
 
     public JRadioButton getHelppo() {
@@ -122,8 +139,8 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
     }
 
     @Override
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void paivita() {
+
     }
 
 }

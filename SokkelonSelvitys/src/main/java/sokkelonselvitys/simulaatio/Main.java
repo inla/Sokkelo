@@ -24,7 +24,8 @@ public class Main {
             }
         }
 
-        s.setPaneeli(k.getSimulaatioPaneeli());
+        s.setSimulaatioPaneeli(k.getSimulaatioPaneeli());
+        s.setValikkoPaneeli(k.getValikkoPaneeli());
 
         Thread t = new Thread(k.getSimulaatioPaneeli());
         t.start();
