@@ -47,7 +47,7 @@ public class TapahtumanKuuntelija implements ActionListener {
                 this.simulaatio.haeReitti();
             }
             this.valikko.paivitaNappulat();
-            
+
         }
         this.simulaatio.getPaneeli().repaint();
     }

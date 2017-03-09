@@ -1,5 +1,6 @@
 package sokkelonselvitys.simulaatio;
 
+import sokkelonselvitys.gui.Paivitettava;
 import sokkelonselvitys.gui.SimulaatioPaneeli;
 import sokkelonselvitys.gui.ValikkoPaneeli;
 import sokkelonselvitys.logiikka.algoritmit.AlgoritmiTyyppi;
@@ -26,6 +27,7 @@ public class Simulaatio {
     private boolean kaynnissa;
     private SimulaatioPaneeli simulaatioPaneeli;
     private ValikkoPaneeli valikkoPaneeli;
+    private Paivitettava paivitettava;
 
     /**
      * Oletuksena on A*-algoritmi ja helppo sokkelo.
@@ -47,6 +49,7 @@ public class Simulaatio {
         } else if (algoritmiTyyppi == AlgoritmiTyyppi.BFS) {
             this.algoritmi = new BFS(sokkelo, alku, maali);
         }
+        this.algoritmi.setPaivitettava(simulaatioPaneeli);
     }
 
     public boolean onKaynnissa() {
@@ -56,15 +59,15 @@ public class Simulaatio {
     public boolean onValmis() {
         return this.algoritmi.onValmis();
     }
+
     /**
      * Käynnistää simulaation.
      */
     public void haeReitti() {
         luoAlgoritmi();
         this.kaynnissa = true;
-//        this.algoritmi.run();
         new Thread(algoritmi).start();
-//        this.paneeli.repaint();
+        this.simulaatioPaneeli.repaint();
         this.valikkoPaneeli.paivitaNappulat();
     }
 
@@ -135,6 +138,10 @@ public class Simulaatio {
 
     public void setValikkoPaneeli(ValikkoPaneeli valikkoPaneeli) {
         this.valikkoPaneeli = valikkoPaneeli;
+    }
+
+    public void setPaivitettava(Paivitettava paivitettava) {
+        this.paivitettava = paivitettava;
     }
 
 }

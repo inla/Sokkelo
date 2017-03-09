@@ -91,7 +91,7 @@ public class Minimikeko<E> {
         if (oikea >= this.maxKoko || vasen >= this.maxKoko) {
             return;
         }
-        
+
         if (this.keko[oikea] == null && this.keko[vasen] == null) {
             return;
         }

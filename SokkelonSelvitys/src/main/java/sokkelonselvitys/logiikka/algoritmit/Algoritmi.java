@@ -1,5 +1,6 @@
 package sokkelonselvitys.logiikka.algoritmit;
 
+import sokkelonselvitys.gui.Paivitettava;
 import sokkelonselvitys.logiikka.Koordinaatti;
 import sokkelonselvitys.logiikka.Ruutu;
 import sokkelonselvitys.logiikka.Solmu;
@@ -23,6 +24,7 @@ public abstract class Algoritmi implements Runnable {
     protected Solmu reittiMaalille;
     protected boolean valmis;
     protected boolean jatketaan;
+    protected Paivitettava paivitettava;
 
     /**
      * Luo uuden algoritmin.
@@ -55,7 +57,7 @@ public abstract class Algoritmi implements Runnable {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     /**
      * Etsii käsiteltävän solmun naapurit.
      *
@@ -83,15 +85,16 @@ public abstract class Algoritmi implements Runnable {
     public void lopeta() {
         this.jatketaan = false;
     }
-    
+
     /**
      * Kertoo, onko algoritmi löytänyt reitin maaliin.
+     *
      * @return true, jos reitti on löytynyt
      */
     public boolean onValmis() {
         return valmis;
     }
-    
+
     public Koordinaatti getAloitus() {
         return aloitus;
     }
@@ -130,17 +133,26 @@ public abstract class Algoritmi implements Runnable {
     protected void maaliLoydetty(Solmu solmu) {
         this.valmis = true;
         this.reittiMaalille = solmu;
-        while(solmu != null) {
+        while (solmu != null) {
             this.solmujenTilaRuudukko[solmu.getY()][solmu.getX()] = SolmunTila.REITTI;
-            solmu.getEdellinen();
+            solmu = solmu.getEdellinen();
         }
+//        if (paivitettava != null) {
+//            this.paivitettava.paivita();
+//        }
     }
-    
+
     /**
      * Kertoo löydetyn reitin pituuden alkusolmusta maalisolmuun.
+     *
      * @return reitin pituus
      */
     public int reitinPituus() {
         return this.reittiMaalille.getKuljetunReitinPituus();
     }
+
+    public void setPaivitettava(Paivitettava paivitettava) {
+        this.paivitettava = paivitettava;
+    }
+
 }

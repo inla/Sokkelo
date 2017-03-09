@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import sokkelonselvitys.simulaatio.Simulaatio;
 import sokkelonselvitys.logiikka.Ruutu;
+import sokkelonselvitys.logiikka.Solmu;
 import sokkelonselvitys.logiikka.SolmunTila;
 
 /**
@@ -13,7 +14,6 @@ import sokkelonselvitys.logiikka.SolmunTila;
  */
 public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
 
-    private Simulaatio simulaatio;
     private int ruudunKoko;
 
     /**
@@ -32,20 +32,17 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
         super.paintComponent(g);
 
         piirraSokkelo(g);
-        
+
         if (this.simulaatio.getAlgoritmi() != null) {
             piirraHaku(g);
-            if (this.simulaatio.onValmis()) {
-                piirraReitti(g);
-            }
         }
-        
+
         piirraAloitusJaMaali(g);
     }
 
     private void piirraSokkelo(Graphics g) {
-        for (int y = 0; y < simulaatio.getKorkeus(); y++) {
-            for (int x = 0; x < simulaatio.getLeveys(); x++) {
+        for (int y = 0; y < this.simulaatio.getKorkeus(); y++) {
+            for (int x = 0; x < this.simulaatio.getLeveys(); x++) {
                 Ruutu r = this.simulaatio.getSokkelonRuutu(x, y);
                 g.setColor(r.getVari());
                 g.fill3DRect(x * ruudunKoko, y * ruudunKoko, ruudunKoko, ruudunKoko, true);
@@ -72,22 +69,10 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
         int maaliX = this.simulaatio.getMaali().getX();
         int maaliY = this.simulaatio.getMaali().getY();
 
-        g.setColor(Color.GREEN);
+        g.setColor(Color.GREEN.brighter());
         g.fill3DRect(alkuX * ruudunKoko + ruudunKoko / 6, alkuY * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
-        g.setColor(Color.PINK);
+        g.setColor(Color.GREEN.darker().darker());
         g.fill3DRect(maaliX * ruudunKoko + ruudunKoko / 6, maaliY * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
-    }
-
-    private void piirraReitti(Graphics g) {
-        for (int y = 0; y < simulaatio.getKorkeus(); y++) {
-            for (int x = 0; x < simulaatio.getLeveys(); x++) {
-                SolmunTila s = this.simulaatio.getSolmunTila(x, y);
-                if (s == SolmunTila.REITTI) {
-                    g.setColor(s.getVari());
-                    g.fill3DRect(x * ruudunKoko + ruudunKoko / 6, y * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
-                }
-            }
-        }
     }
 
     @Override

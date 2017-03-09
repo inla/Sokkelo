@@ -63,5 +63,4 @@ public class Kayttoliittyma implements Runnable {
     public ValikkoPaneeli getValikkoPaneeli() {
         return valikkoPaneeli;
     }
-
 }

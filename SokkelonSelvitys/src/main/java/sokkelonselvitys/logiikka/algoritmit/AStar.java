@@ -57,24 +57,22 @@ public class AStar extends Algoritmi {
                 break;
             }
 
-            //tutkittava.setTila(SolmunTila.KASITTELYSSA);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
 
             hidasta();
-            
+
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
                 //jos solmu on jo löydetty ja siihen tullaan nyt pidempää reittiä -> ei tehdä mitään
-                if (this.solmujenTilaRuudukko[s.getY()][s.getX()] != null 
+                if (this.solmujenTilaRuudukko[s.getY()][s.getX()] != null
                         && lyhimmatReitit[s.getY()][s.getX()] <= s.getKuljetunReitinPituus()) {
                     continue;
                 }
                 lyhimmatReitit[s.getY()][s.getX()] = s.getKuljetunReitinPituus();
-                //s.setTila(SolmunTila.LOYDETTY);
+                
                 this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
 
-            //tutkittava.setTila(SolmunTila.KASITELTY);
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
 

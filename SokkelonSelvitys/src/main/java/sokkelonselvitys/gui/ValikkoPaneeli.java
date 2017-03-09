@@ -15,7 +15,6 @@ import sokkelonselvitys.simulaatio.Simulaatio;
  */
 public class ValikkoPaneeli extends AbstraktiPaneeli {
 
-    private Simulaatio simulaatio;
     private TapahtumanKuuntelija kuuntelija;
 
     private JRadioButton helppo;
@@ -140,6 +139,7 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
 
     @Override
     public void paivita() {
+        paivitaNappulat();
 
     }
 
