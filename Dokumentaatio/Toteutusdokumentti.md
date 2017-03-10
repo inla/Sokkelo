@@ -121,7 +121,7 @@ Poista(indeksi) puolestaan poistaa tietyssä indeksissä olevan alkion, jonka j�
     }
 ```
 ###MinimiKeko
-Minimikeko on toteutettu taulukkona, jota pidetään pienuusjärjestyksessä heapify-operaation avulla, joka puolestaan tarvitsee seuraavia apuoperaatioita:
+Minimikeko on toteutettu puurakenteisena taulukkona, jossa alkiot ovat pienuusjärjestyksessä eli pienin alkio on aina puun juuressa. Kekoon voi lisätä alkioita ja siitä voi ottaa pienimmän alkion, ja sitä pidetään pienuusjärjestyksessä heapify-operaation avulla, joka puolestaan tarvitsee seuraavia apuoperaatioita:
 
 ```javascript
     private int pienempi(int i, int j) {
@@ -152,6 +152,45 @@ Minimikeko on toteutettu taulukkona, jota pidetään pienuusjärjestyksessä hea
 ```
 Pienempi(i, j) vertaa kahta oliota ja palauttaa niistä pienemmän, vaihda(i,j) vaihtaa kahden alkion paikkaa keskenään ja vanhempi(i), vasenLapsi(i) ja oikeaLapsi(i) kertovat indeksin i sukulaissuhteista. Näiden kaikkien operaatioiden aika- ja tilavaativuus on vakio.
 
+```javascript
+    private void heapify(int indeksi) {
+        int oikea = oikeaLapsi(indeksi);
+        int vasen = vasenLapsi(indeksi);
+
+        if (oikea >= this.maxKoko || vasen >= this.maxKoko) {
+            return;
+        }
+
+        if (this.keko[oikea] == null && this.keko[vasen] == null) {
+            return;
+        }
+
+        if (oikea <= this.koko) {
+            int pienin = pienempi(oikea, vasen);
+            if (pienempi(indeksi, pienin) == pienin) {
+                vaihda(indeksi, pienin);
+                heapify(pienin);
+            }
+        } else if (vasen == this.koko && pienempi(indeksi, vasen) == vasen) {
+            vaihda(indeksi, vasen);
+        }
+    }
+```
+Heapify-operaatio kuljettaa alkiota alaspäin puussa kunnes kekoehto on korjautunut, eli alkiot ovat taas oikeassa pienuusjärjestyksessä. Operaatio on muuten vakioaikainen, mutta se kutsuu itseään rekursiivisesti. Pahimmassa tapauksessa kutsuja tehdään puun korkeuden verran, eli aikavaativuus on O(log n). Tilavaativuus on myös O(log n) rekursion takia.
+
+OtaPienin()-operaatio tarkistaa ensin ettei keko ole tyhjä, ja palauttaa sitten keon juurialkion. Sitten keon viimeinen alkio sirretään juureen ja kutsutaan heapify-metodia juurelle kekoehdon korjaamiseksi.
+```javascript
+    public E otaPienin() {
+        if (tyhja()) {
+            return null;
+        }
+        E min = (E) this.keko[0];
+        this.keko[0] = this.keko[this.koko - 1];
+        this.koko--;
+        heapify(0);
+        return min;
+    }
+```
 ```javascript
 ```
 
