@@ -73,7 +73,6 @@ public class AStar extends Algoritmi {
             }
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
-
     }
 
     private void alustaReitit() {
