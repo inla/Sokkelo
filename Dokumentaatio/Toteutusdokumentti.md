@@ -43,7 +43,7 @@ public void lisaa(E lisattava) {
     }
 }
 ```
-Lisäys-operaation aikavaativuus on vakioaikainen, jos jonoa ei tarvitse kasvattaa. KasvataJonoa()-operaatiossa on yksi silmukka, joka suoritetaan n kertaa, kun n = jonon alkioiden lukumäärä, joten operaation aikavaativuus on O(n) ja siten myös lisaa()-operaation aikavaativuus on O(n).
+Lisäys-operaation aikavaativuus on vakioaikainen, jos jonoa ei tarvitse kasvattaa. KasvataJonoa()-operaatiossa on yksi silmukka, joka suoritetaan n kertaa, kun n = alkioiden lukumäärä, joten operaation aikavaativuus on O(n) ja siten myös lisaa()-operaation aikavaativuus on O(n).
 ```javascript
     private void kasvataJonoa() {
         Object[] uusi = new Object[this.maxKoko * 2];
@@ -77,7 +77,7 @@ Operaatio ota() palauttaa jonon alkion kohdasta head ja siirtää headia yhden i
 ```
 
 ###Lista
-Lista on toteuttettu taulukkona ja siihen voi lisätä ja siitä voi ottaa tai poistaa alkioita.
+Myös lista on toteuttettu taulukkona ja siihen voi lisätä ja siitä voi ottaa tai poistaa alkioita.
 Operaatio lisaa(lisattava) lisää alkion listan loppuun tarkastettuaan ensin, onko lista täynnä ja tarvittaessa kasvatettuaan listaa. 
 
 ```javascript
@@ -120,9 +120,37 @@ Poista(indeksi) puolestaan poistaa tietyssä indeksissä olevan alkion, jonka j�
         this.lista[koko] = null;
     }
 ```
+###MinimiKeko
+Minimikeko on toteutettu taulukkona, jota pidetään pienuusjärjestyksessä heapify-operaation avulla, joka puolestaan tarvitsee seuraavia apuoperaatioita:
 
 ```javascript
+    private int pienempi(int i, int j) {
+        if (this.vertaaja.compare((E) this.keko[i], (E) this.keko[j]) < 0) {
+            return i;
+        } else {
+            return j;
+        }
+    }
+
+    private void vaihda(int i, int j) {
+        Object temp = this.keko[i];
+        this.keko[i] = this.keko[j];
+        this.keko[j] = temp;
+    }
+
+    private int vanhempi(int indeksi) {
+        return (indeksi - 1) / 2;
+    }
+
+    private int vasenLapsi(int indeksi) {
+        return 2 * indeksi + 1;
+    }
+
+    private int oikeaLapsi(int indeksi) {
+        return 2 * indeksi + 2;
+    }
 ```
+Pienempi(i, j) vertaa kahta oliota ja palauttaa niistä pienemmän, vaihda(i,j) vaihtaa kahden alkion paikkaa keskenään ja vanhempi(i), vasenLapsi(i) ja oikeaLapsi(i) kertovat indeksin i sukulaissuhteista. Näiden kaikkien operaatioiden aika- ja tilavaativuus on vakio.
 
 ```javascript
 ```
