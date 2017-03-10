@@ -218,6 +218,8 @@ Lisaa(lisattava)-operaatio tarkistaa ensin onko keko täynnä ja tarvittaessa ka
     }
 ```
 ##Algoritmit
+Abstraktissa Algoritmi-luokassa on metodi kasiteltavanSolmunNaapurit(), jossa solmun koordinaattien vieruskoordinaatit tutkitaan ja sellaiset, jotka eivät ole sokkelon ulkopuolella tai esteitä, lisätään listaan. Metodissa on for-silmukka, joka suoritetaan neljä kertaa, ja sen sisällä listalle lisäys-operaatio, jonka aikavaativuus on vakio. Listalle tulee enintään neljä alkiota, joten listan kasvatus-operaatiota ei tarvitse käyttää. Siten solmun naapurien etsintä on vakioaikaista. MaaliLoytyi()-metodissa on while-silmukka, joka suoritetaan enintään reitin pituuden verran.
+
 ###A\*
 A\*-algoritmissa edetään aina sellaiseen solmuun, jonka alku- ja maalisolmujen etäisyysarvioiden summa on pienin. Tässä käytetään hyväksi tietorakennetta Minimikeko. Keosta otetaan aina seuraava solmu ja niin kauan, kun ei olla vielä maalissa, saadun solmun naapurit lisätään kekoon, jos niihin ei ole vielä tultu lyhyempää reittiä pitkin. Algoritmin alussa kekoon lisätään aloitussolmu.
 
