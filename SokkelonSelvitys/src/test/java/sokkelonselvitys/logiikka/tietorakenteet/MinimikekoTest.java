@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class MinimikekoTest {
-
     private Minimikeko<Integer> keko;
     private Comparator<Integer> c;
 
@@ -97,6 +96,5 @@ public class MinimikekoTest {
         assertEquals(7, (int) keko.otaPienin());
         assertEquals(8, (int) keko.otaPienin());
         assertEquals(9, (int) keko.otaPienin());
-
     }
 }

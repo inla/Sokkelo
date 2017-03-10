@@ -62,15 +62,12 @@ public class Minimikeko<E> {
         if (taysi()) {
             kasvataKekoa();
         }
-
         int i = this.koko - 1;
         this.keko[i] = lisattava;
         while (i > 0 && pienempi(i, vanhempi(i)) == i) {
             vaihda(i, vanhempi(i));
             i = vanhempi(i);
         }
-
-//        this.keko[i] = lisattava;
     }
 
     private void kasvataKekoa() {
@@ -79,7 +76,6 @@ public class Minimikeko<E> {
         for (int i = 0; i < this.keko.length; i++) {
             uusi[i] = this.keko[i];
         }
-
         this.keko = uusi;
         this.maxKoko *= 2;
     }
@@ -144,5 +140,4 @@ public class Minimikeko<E> {
     public int getKoko() {
         return koko;
     }
-
 }

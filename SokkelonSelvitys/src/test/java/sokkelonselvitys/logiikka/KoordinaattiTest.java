@@ -10,7 +10,6 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class KoordinaattiTest {
-
     private Koordinaatti koord;
 
     public KoordinaattiTest() {

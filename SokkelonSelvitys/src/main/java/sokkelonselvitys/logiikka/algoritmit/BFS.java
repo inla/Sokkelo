@@ -43,7 +43,6 @@ public class BFS extends Algoritmi {
             }
 
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
-
             hidasta();
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {

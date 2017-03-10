@@ -13,7 +13,6 @@ import sokkelonselvitys.logiikka.SolmunTila;
  * @author inka
  */
 public class AStarTest {
-
     private Algoritmi astar;
     private Ruutu[][] sokkelo;
 
@@ -116,7 +115,6 @@ public class AStarTest {
             } catch (InterruptedException ex) {
                 System.out.println(ex.getMessage());
             }
-
         }
     }
 
@@ -140,5 +138,4 @@ public class AStarTest {
         this.sokkelo[4][5] = Ruutu.VESI;
         this.sokkelo[5][5] = Ruutu.VESI;
     }
-
 }

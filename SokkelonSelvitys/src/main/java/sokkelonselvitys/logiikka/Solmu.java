@@ -54,5 +54,4 @@ public class Solmu {
     public void setTila(SolmunTila tila) {
         this.tila = tila;
     }
-
 }

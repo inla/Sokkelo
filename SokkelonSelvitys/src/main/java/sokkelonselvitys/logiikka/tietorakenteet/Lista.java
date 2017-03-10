@@ -35,7 +35,6 @@ public class Lista<E> implements Iterable<E> {
         if (this.koko == this.maxKoko) {
             kasvataListaa();
         }
-
         this.lista[koko] = lisattava;
         this.koko++;
     }
@@ -46,7 +45,6 @@ public class Lista<E> implements Iterable<E> {
         for (int i = 0; i < this.lista.length; i++) {
             uusi[i] = this.lista[i];
         }
-
         this.lista = uusi;
         this.maxKoko *= 2;
     }
@@ -101,7 +99,6 @@ public class Lista<E> implements Iterable<E> {
     }
 
     private class Iteraattori implements Iterator<E> {
-
         int indeksi;
         int viimeeksiPalautettu = -1;
 
@@ -120,5 +117,4 @@ public class Lista<E> implements Iterable<E> {
             throw new NoSuchElementException();
         }
     }
-
 }

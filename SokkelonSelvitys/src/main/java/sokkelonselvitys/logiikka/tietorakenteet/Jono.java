@@ -89,12 +89,10 @@ public class Jono<E> {
                 this.head = 0;
             }
         }
-
         this.jono = uusi;
         this.head = uusiHead;
         this.tail = uusiTail;
         this.maxKoko *= 2;
-
     }
 
     /**
@@ -117,8 +115,4 @@ public class Jono<E> {
     public int getMaxKoko() {
         return maxKoko;
     }
-
-//    private int seuraava(int i) {
-//        return (i + 1) % this.maxKoko;
-//    }
 }

@@ -77,12 +77,11 @@ public abstract class Algoritmi implements Runnable {
             }
             naapurit.lisaa(new Solmu(k, solmu, solmu.getKuljetunReitinPituus() + sokkelo[k.getY()][k.getX()].getHidastus()));
         }
-
         return naapurit;
     }
 
     /**
-     * Lopettaa alggoritmin suorituksen.
+     * Lopettaa algoritmin suorituksen.
      */
     public void lopeta() {
         this.jatketaan = false;
@@ -156,5 +155,4 @@ public abstract class Algoritmi implements Runnable {
     public void setPaivitettava(Paivitettava paivitettava) {
         this.paivitettava = paivitettava;
     }
-
 }

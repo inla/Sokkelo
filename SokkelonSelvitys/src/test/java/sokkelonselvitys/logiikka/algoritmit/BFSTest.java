@@ -6,14 +6,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import sokkelonselvitys.logiikka.Koordinaatti;
 import sokkelonselvitys.logiikka.Ruutu;
-import sokkelonselvitys.logiikka.SolmunTila;
 
 /**
  *
  * @author inka
  */
 public class BFSTest {
-
     private Algoritmi bfs;
     private Ruutu[][] sokkelo;
 
@@ -69,7 +67,6 @@ public class BFSTest {
             } catch (InterruptedException ex) {
                 System.out.println(ex.getMessage());
             }
-
         }
     }
 

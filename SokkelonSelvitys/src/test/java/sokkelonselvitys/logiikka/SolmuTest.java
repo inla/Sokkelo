@@ -10,11 +10,9 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class SolmuTest {
-
     private Solmu solmu;
 
     public SolmuTest() {
-
     }
 
     @Before

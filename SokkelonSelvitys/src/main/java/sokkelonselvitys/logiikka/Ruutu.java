@@ -28,5 +28,4 @@ public enum Ruutu {
     public int getHidastus() {
         return hidastus;
     }
-
 }

@@ -50,10 +50,18 @@ public class Simulaatio {
         this.algoritmi.setPaivitettava(valikkoPaneeli);
     }
 
+    /**
+     * Kertoo, onko simulaatio käynnissä.
+     * @return 
+     */
     public boolean onKaynnissa() {
         return kaynnissa;
     }
 
+    /**
+     * Kertoo, onko simulaatio löytänyt reitin maaliin.
+     * @return true, jos reitti lötynyt
+     */
     public boolean onValmis() {
         return this.algoritmi.onValmis();
     }
@@ -68,14 +76,16 @@ public class Simulaatio {
     }
 
     /**
-     * Lopettaa simulaation.
+     * Pysäyttää simulaation.
      */
     public void lopetaHaku() {
         this.kaynnissa = false;
         this.algoritmi.lopeta();
-
     }
 
+    /**
+     * Tyhjentää simulaation.
+     */
     public void tyhjenna() {
         lopetaHaku();
         this.algoritmi = null;

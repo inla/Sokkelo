@@ -58,7 +58,6 @@ public class AStar extends Algoritmi {
             }
 
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
-
             hidasta();
 
             for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
@@ -72,7 +71,6 @@ public class AStar extends Algoritmi {
                 this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
-
             this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
         }
 
@@ -89,5 +87,4 @@ public class AStar extends Algoritmi {
     private int etaisyysArvioMaaliin(Solmu s) {
         return Math.abs(s.getX() - this.maali.getX()) + Math.abs(s.getY() - this.maali.getY());
     }
-
 }
