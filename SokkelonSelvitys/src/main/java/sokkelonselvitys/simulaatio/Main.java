@@ -37,7 +37,7 @@ public class Main {
 
         Thread t = new Thread(k.getSimulaatioPaneeli());
         t.start();
-        
+
         //suorituskykytestaus();
     }
 
@@ -52,7 +52,7 @@ public class Main {
         System.out.println("Vaikea sokkelo\n");
         testaa(st.getVaikea());
     }
-    
+
     public static void testaa(Ruutu[][] sokkelo) {
         Koordinaatti alku = new Koordinaatti(1, 2);
         Koordinaatti maali = new Koordinaatti(14, 12);
@@ -69,7 +69,7 @@ public class Main {
             summa += tulos;
         }
         System.out.println("Keskiarvo: " + (1.0 * summa / suorituskerrat) + " ms");
-        
+
         System.out.println("");
         summa = 0;
 
@@ -88,7 +88,7 @@ public class Main {
     public static long suorita(Algoritmi a) {
         long alkuaika = System.currentTimeMillis();
         new Thread(a).start();
-        while (!a.onValmis()){
+        while (!a.onValmis()) {
             try {
                 Thread.sleep(1);
             } catch (InterruptedException ex) {

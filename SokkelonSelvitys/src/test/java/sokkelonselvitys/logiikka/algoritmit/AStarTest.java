@@ -13,6 +13,7 @@ import sokkelonselvitys.logiikka.SolmunTila;
  * @author inka
  */
 public class AStarTest {
+
     private Algoritmi astar;
     private Ruutu[][] sokkelo;
 

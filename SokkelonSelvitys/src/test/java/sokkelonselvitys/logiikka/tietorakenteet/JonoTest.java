@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class JonoTest {
+
     private Jono<Integer> jono;
 
     public JonoTest() {

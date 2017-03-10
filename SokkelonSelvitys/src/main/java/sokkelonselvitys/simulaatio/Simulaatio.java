@@ -52,7 +52,8 @@ public class Simulaatio {
 
     /**
      * Kertoo, onko simulaatio käynnissä.
-     * @return 
+     *
+     * @return
      */
     public boolean onKaynnissa() {
         return kaynnissa;
@@ -60,6 +61,7 @@ public class Simulaatio {
 
     /**
      * Kertoo, onko simulaatio löytänyt reitin maaliin.
+     *
      * @return true, jos reitti lötynyt
      */
     public boolean onValmis() {

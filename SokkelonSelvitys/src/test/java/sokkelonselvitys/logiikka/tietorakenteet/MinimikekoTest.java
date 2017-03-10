@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class MinimikekoTest {
+
     private Minimikeko<Integer> keko;
     private Comparator<Integer> c;
 

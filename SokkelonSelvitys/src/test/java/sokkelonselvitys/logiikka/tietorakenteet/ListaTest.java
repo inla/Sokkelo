@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  * @author inka
  */
 public class ListaTest {
+
     private Lista<Integer> lista;
 
     public ListaTest() {

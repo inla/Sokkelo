@@ -12,6 +12,7 @@ import sokkelonselvitys.logiikka.Ruutu;
  * @author inka
  */
 public class BFSTest {
+
     private Algoritmi bfs;
     private Ruutu[][] sokkelo;
 
