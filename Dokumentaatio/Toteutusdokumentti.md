@@ -221,9 +221,12 @@ Lisaa(lisattava)-operaatio tarkistaa ensin onko keko täynnä ja tarvittaessa ka
 ###A\*
 A\*-algoritmissa edetään aina sellaiseen solmuun, jonka alku- ja maalisolmujen etäisyysarvioiden summa on pienin. Tässä käytetään hyväksi tietorakennetta Minimikeko. Keosta otetaan aina seuraava solmu ja niin kauan, kun ei olla vielä maalissa, saadun solmun naapurit lisätään kekoon, jos niihin ei ole vielä tultu lyhyempää reittiä pitkin. Algoritmin alussa kekoon lisätään aloitussolmu.
 
+###BFS
+Leveyssuuntaisessa hakualgoritmissa edetään joka suuntaan, kunnes maali löytyy. Algoritmi käyttää tietorakennetta Jono, josta otetaan aina seuraava solmu ja jos ei olla vielä maalissa, lisätään jonoon saadun solmun sellaiset naapurit, joita ei oltu vielä löydetty (solmun tila on null). Aluksi jonoon lisätään aloitussolmu.
+
 
 ##Puutteet ja parannusehdotukset
 Ohjelmasta jäi puuttumaan hidasteiden käyttö sokkeloissa, vaikkakin valmiudet siihen olisi eli ne olisi helppo toteuttaa jatkossa. Ohjelma ei myöskään ota huomioon tilannetta, jossa hakualgoritmi ei löydä reittiä maaliin. Muita kehitysideoita, joiden toteutustapoja en kuitenkaan ole suuremmin miettinyt, olisivat esimerkiksi, että käyttäjä voisi muokata sokkeloa itse, kuten lisätä/poistaa esteitä ja hidasteita, tai liikuttaa aloitus- ja maalisolmuja. Aloritmeja voisi myös olla useampi erilainen, ja niiden suoritusta olisi kiinnostavaa pystyä vertailemaan rinnakkain toimivista simulaatioista.
 
 ##Lähteet
-Tietorakenteet ja algoritmit kurssimateriaali
+* Tietorakenteet ja algoritmit kurssimateriaali
