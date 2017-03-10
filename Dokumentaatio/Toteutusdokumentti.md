@@ -252,6 +252,7 @@ A\*-algoritmissa edetään aina sellaiseen solmuun, jonka alku- ja maalisolmujen
 
     }
 ```
+For-silmukka suoritetaan enintään neljä kertaa, ja lisää-operaation aikavaativuus on pahimmillaan O(log n), kun keossa on n solmua, joten kokonaisuudessaan silmukka vie aikaa O(4\*log n). While-silmukka suoritetaan enintään solmujen lukumäärän verran.
 
 
 ###BFS
@@ -282,7 +283,7 @@ Leveyssuuntaisessa hakualgoritmissa edetään joka suuntaan, kunnes maali löyty
         }
     }
 ```
-Lisäys on pahimmassa tapauksessa, vaikkakin harvoin, aikavaativuudeltaan O(n). For-silmukka suoritetaan aina enintään neljä kertaa, eli kokonaisuudessaan sen aikavaativuus on O(4n). While-silmukka onkin hankalampi miettiä, sen aikavaativuus on korkeintaan O(n), eli jos kaikki solmut ovat yhtäaikaa jonossa. Se ei kuitenkaan ole mahdollista, sillä solmusta on kaari enintään neljään muuhun solmuun ja solmu lisätään jonoon ja poistetaan jonosta korkeintaan kerran.
+Lisäys on pahimmassa tapauksessa, vaikkakin harvoin, aikavaativuudeltaan O(n), kun n on jonossa olevien alkioiden lukumäärä. For-silmukka suoritetaan aina enintään neljä kertaa, eli kokonaisuudessaan sen aikavaativuus on O(4n). While-silmukka onkin hankalampi miettiä, sen aikavaativuus on korkeintaan O(e), jossa e on solmujen lukumäärä, eli jos kaikki solmut ovat yhtäaikaa jonossa. Se ei kuitenkaan ole mahdollista, sillä solmusta on kaari enintään neljään muuhun solmuun ja solmu lisätään jonoon ja poistetaan jonosta korkeintaan kerran.
 
 
 ##Puutteet ja parannusehdotukset
