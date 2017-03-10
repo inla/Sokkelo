@@ -1,6 +1,7 @@
 #Testausdokumentti
 
 Ohjelman logiikkaa, algoritmeja ja tietorakenteita on testattu JUnit-yksikkötesteillä. Testit voidaan siis helposti toistaa suorittamalla ne uudestaan.
+
 [pit-raportti](https://htmlpreview.github.io/?https://github.com/inla/Sokkelo/blob/master/Dokumentaatio/pit/201703102303/index.html)
 
 ###Tietorakenteiden testaus
