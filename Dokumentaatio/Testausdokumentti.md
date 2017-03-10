@@ -1,6 +1,6 @@
 ##Testausdokumentti
 
-Ohjelman logiikkaa, algoritmeja ja tietorakenteita on testattu JUnit-yksikkötesteillä.
+Ohjelman logiikkaa, algoritmeja ja tietorakenteita on testattu JUnit-yksikkötesteillä. Testit voidaan siis helposti toistaa suorittamalla ne uudestaan.
 
 ###Tietorakenteiden testaus
 Kaikkilla tietorakenteilla, Jono, Lista ja MinimiKeko, on testejä esimerkiksi sille, ovatko ne aluksi tyhjiä, kasvaako niiden maksimikoko tarvittaessa, kasvaako niiden koko lisättäessä alkioita ja saadaanko alkiot ulos oikeassa järjestyksessä. Testeissä tietorakenteisiin lisätään Integerejä.
