@@ -1,3 +1,3 @@
-# Sokkelo
+# SokkelonSelvitysSimulaatio
 
 Tietorakenteet ja algoritmit harjoitustyö
