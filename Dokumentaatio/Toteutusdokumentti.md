@@ -11,7 +11,7 @@ Algoritmi-pakkauksessa on luokat AStar ja BFS, jotka toteuttavat A\* ja BFS -alg
 
 
 ###Puutteet ja parannusehdotukset
-
+Ohjelmasta jäi puuttumaan hidasteiden käyttö sokkeloissa, vaikkakin valmiudet siihen olisi eli ne olisi helppo toteuttaa jatkossa.  Muita kehitysideoita, joiden toteutustapoja en kuitenkaan ole suuremmin miettinyt, olisivat esimerkiksi, että käyttäjä voisi muokata sokkeloa itse, kuten lisätä/poistaa esteitä ja hidasteita, tai liikuttaa aloitus- ja maalisolmuja. Aloritmeja voisi myös olla useampi erilainen, ja niiden suoritusta olisi kiinnostavaa pystyä vertailemaan rinnakkain toimivista simulaatioista.
 
 ###Lähteet
 
