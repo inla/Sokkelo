@@ -77,7 +77,55 @@ Operaatio ota() palauttaa jonon alkion kohdasta head ja siirtää headia yhden i
 ```
 
 ###Lista
+Lista on toteuttettu taulukkona ja siihen voi lisätä ja siitä voi ottaa tai poistaa alkioita.
+Operaatio lisaa(lisattava) lisää alkion listan loppuun tarkastettuaan ensin, onko lista täynnä ja tarvittaessa kasvatettuaan listaa. 
 
+```javascript
+    public void lisaa(E lisattava) {
+        if (this.koko == this.maxKoko) {
+            kasvataListaa();
+        }
+        this.lista[koko] = lisattava;
+        this.koko++;
+    }
+```
+Lisaa()-operaatio on muuten vakioaikainen, mutta kasvataListaa() -operaatossa on silmukka, joka suoritetaan n kertaa. Siten molempien operaatioiden aikavaativuudet ovat O(n).
+```javascript
+    private void kasvataListaa() {
+        Object[] uusi = new Object[maxKoko * 2];
+
+        for (int i = 0; i < this.lista.length; i++) {
+            uusi[i] = this.lista[i];
+        }
+        this.lista = uusi;
+        this.maxKoko *= 2;
+    }
+```
+Ota(indeksi)-operaatio palauttaa tietyssä indeksissä olevan alkion ja on selvästi vakioaikainen.
+```javascript
+    public E ota(int indeksi) {
+        return (E) this.lista[indeksi];
+    }
+```
+Poista(indeksi) puolestaan poistaa tietyssä indeksissä olevan alkion, jonka jälkeen siirtää jäljelle jääneiden alkioiden indeksiä yhden vasemmalle. Siirtäminen tapahtuu silmukassa, joka siis suoritetaan n kertaa. Muuten operaatio on vakioaikainen, joten aikavaativuudeksi saadaan O(n).
+```javascript
+    public void poista(int indeksi) {
+        int loput = this.koko - indeksi - 1;
+        while (loput > 0) {
+            this.lista[indeksi] = this.lista[indeksi + 1];
+            indeksi++;
+            loput--;
+        }
+        this.koko--;
+        this.lista[koko] = null;
+    }
+```
+
+```javascript
+```
+
+```javascript
+```
 
 ##Puutteet ja parannusehdotukset
 Ohjelmasta jäi puuttumaan hidasteiden käyttö sokkeloissa, vaikkakin valmiudet siihen olisi eli ne olisi helppo toteuttaa jatkossa.  Muita kehitysideoita, joiden toteutustapoja en kuitenkaan ole suuremmin miettinyt, olisivat esimerkiksi, että käyttäjä voisi muokata sokkeloa itse, kuten lisätä/poistaa esteitä ja hidasteita, tai liikuttaa aloitus- ja maalisolmuja. Aloritmeja voisi myös olla useampi erilainen, ja niiden suoritusta olisi kiinnostavaa pystyä vertailemaan rinnakkain toimivista simulaatioista.
