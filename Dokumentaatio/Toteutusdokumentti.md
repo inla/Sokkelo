@@ -224,6 +224,33 @@ A\*-algoritmissa edetään aina sellaiseen solmuun, jonka alku- ja maalisolmujen
 ###BFS
 Leveyssuuntaisessa hakualgoritmissa edetään joka suuntaan, kunnes maali löytyy. Algoritmi käyttää tietorakennetta Jono, josta otetaan aina seuraava solmu ja jos ei olla vielä maalissa, lisätään jonoon saadun solmun sellaiset naapurit, joita ei oltu vielä löydetty (solmun tila on null). Aluksi jonoon lisätään aloitussolmu.
 
+```javascript
+    public void run() {
+        tutkittavat.lisaa(new Solmu(aloitus, null, 0));
+
+        while (!tutkittavat.tyhja() && this.jatketaan) {
+            Solmu tutkittava = tutkittavat.ota();
+
+            if (tutkittava.getKoordinaatit().equals(maali)) {
+                maaliLoytyi(tutkittava);
+                break;
+            }
+
+            this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITTELYSSA;
+            hidasta();
+
+            for (Solmu s : kasiteltavanSolmunNaapurit(tutkittava)) {
+                if (this.solmujenTilaRuudukko[s.getY()][s.getX()] == null) {
+                    tutkittavat.lisaa(s);
+                    this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
+                }
+            }
+            this.solmujenTilaRuudukko[tutkittava.getY()][tutkittava.getX()] = SolmunTila.KASITELTY;
+        }
+    }
+```
+Lisäys on pahimmassa tapauksessa, vaikkakin harvoin, aikavaativuudeltaan O(n). For-silmukka suoritetaan aina enintään neljä kertaa, eli kokonaisuudessaan sen aikavaativuus on O(4n). While-silmukka onkin hankalampi miettiä, sen aikavaativuus on korkeintaan O(n), eli jos kaikki solmut ovat yhtäaikaa jonossa. Se ei kuitenkaan ole mahdollista, sillä solmusta on kaari enintään neljään muuhun solmuun. Solmu lisätään jonoon ja poistetaan jonosta korkeintaan kerran.
+
 
 ##Puutteet ja parannusehdotukset
 Ohjelmasta jäi puuttumaan hidasteiden käyttö sokkeloissa, vaikkakin valmiudet siihen olisi eli ne olisi helppo toteuttaa jatkossa. Ohjelma ei myöskään ota huomioon tilannetta, jossa hakualgoritmi ei löydä reittiä maaliin. Muita kehitysideoita, joiden toteutustapoja en kuitenkaan ole suuremmin miettinyt, olisivat esimerkiksi, että käyttäjä voisi muokata sokkeloa itse, kuten lisätä/poistaa esteitä ja hidasteita, tai liikuttaa aloitus- ja maalisolmuja. Aloritmeja voisi myös olla useampi erilainen, ja niiden suoritusta olisi kiinnostavaa pystyä vertailemaan rinnakkain toimivista simulaatioista.
