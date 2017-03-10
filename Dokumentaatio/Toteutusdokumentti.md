@@ -249,7 +249,7 @@ Leveyssuuntaisessa hakualgoritmissa edetään joka suuntaan, kunnes maali löyty
         }
     }
 ```
-Lisäys on pahimmassa tapauksessa, vaikkakin harvoin, aikavaativuudeltaan O(n). For-silmukka suoritetaan aina enintään neljä kertaa, eli kokonaisuudessaan sen aikavaativuus on O(4n). While-silmukka onkin hankalampi miettiä, sen aikavaativuus on korkeintaan O(n), eli jos kaikki solmut ovat yhtäaikaa jonossa. Se ei kuitenkaan ole mahdollista, sillä solmusta on kaari enintään neljään muuhun solmuun. Solmu lisätään jonoon ja poistetaan jonosta korkeintaan kerran.
+Lisäys on pahimmassa tapauksessa, vaikkakin harvoin, aikavaativuudeltaan O(n). For-silmukka suoritetaan aina enintään neljä kertaa, eli kokonaisuudessaan sen aikavaativuus on O(4n). While-silmukka onkin hankalampi miettiä, sen aikavaativuus on korkeintaan O(n), eli jos kaikki solmut ovat yhtäaikaa jonossa. Se ei kuitenkaan ole mahdollista, sillä solmusta on kaari enintään neljään muuhun solmuun ja solmu lisätään jonoon ja poistetaan jonosta korkeintaan kerran.
 
 
 ##Puutteet ja parannusehdotukset
