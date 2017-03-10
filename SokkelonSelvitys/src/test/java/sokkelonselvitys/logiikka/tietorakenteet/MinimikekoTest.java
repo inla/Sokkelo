@@ -73,7 +73,7 @@ public class MinimikekoTest {
     public void testOtaPieninPalauttaaNullJosKekoTyhja() {
         assertEquals(null, this.keko.otaPienin());
     }
-    
+
     @Test
     public void testKekoOnOikeassaJarjestyksessa() {
         this.keko.lisaa(2);

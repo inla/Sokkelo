@@ -2,9 +2,9 @@ package sokkelonselvitys.gui;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JPanel;
 import sokkelonselvitys.simulaatio.Simulaatio;
 import sokkelonselvitys.logiikka.Ruutu;
-import sokkelonselvitys.logiikka.Solmu;
 import sokkelonselvitys.logiikka.SolmunTila;
 
 /**
@@ -12,8 +12,9 @@ import sokkelonselvitys.logiikka.SolmunTila;
  *
  * @author inka
  */
-public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
+public class SimulaatioPaneeli extends JPanel implements Runnable, Paivitettava {
 
+    private Simulaatio simulaatio;
     private int ruudunKoko;
 
     /**
@@ -23,7 +24,7 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
      * @param ruudunKoko yksittäisen ruudun koko
      */
     public SimulaatioPaneeli(Simulaatio simulaatio, int ruudunKoko) {
-        super(simulaatio);
+        this.simulaatio = simulaatio;
         this.ruudunKoko = ruudunKoko;
     }
 
@@ -57,7 +58,6 @@ public class SimulaatioPaneeli extends AbstraktiPaneeli implements Runnable {
                 if (s != null) {
                     g.setColor(s.getVari());
                     g.fill3DRect(x * ruudunKoko + ruudunKoko / 6, y * ruudunKoko + ruudunKoko / 6, 2 * ruudunKoko / 3, 2 * ruudunKoko / 3, true);
-                    // ruudunKoko =30, pikkuruutu =20, reunat =5;
                 }
             }
         }

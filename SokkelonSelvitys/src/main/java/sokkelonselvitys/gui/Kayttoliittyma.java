@@ -39,7 +39,7 @@ public class Kayttoliittyma implements Runnable {
 
         frame.pack();
         frame.setVisible(true);
-//        frame.setResizable(false);
+        frame.setResizable(false);
     }
 
     private void luoKomponentit(Container c) {

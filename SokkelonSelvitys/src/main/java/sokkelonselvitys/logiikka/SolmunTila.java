@@ -4,7 +4,7 @@ import java.awt.Color;
 
 /**
  * Solmun tila muuttuu hakualgoritmin edetessä. Ennen kuin algoritmi on päässyt
- * solmun kohdalle, solmun tila on null.
+ * solmun kohdalle, solmun tila on null. Eri värit auttavat visualisoinnissa.
  *
  * @author inka
  */

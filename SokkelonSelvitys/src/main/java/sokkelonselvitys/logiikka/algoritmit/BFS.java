@@ -38,7 +38,7 @@ public class BFS extends Algoritmi {
             Solmu tutkittava = tutkittavat.ota();
 
             if (tutkittava.getKoordinaatit().equals(maali)) {
-                maaliLoydetty(tutkittava);
+                maaliLoytyi(tutkittava);
                 break;
             }
 

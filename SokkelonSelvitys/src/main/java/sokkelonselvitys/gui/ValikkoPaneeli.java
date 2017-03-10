@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import sokkelonselvitys.simulaatio.Simulaatio;
 
@@ -13,8 +14,9 @@ import sokkelonselvitys.simulaatio.Simulaatio;
  *
  * @author inka
  */
-public class ValikkoPaneeli extends AbstraktiPaneeli {
+public class ValikkoPaneeli extends JPanel implements Paivitettava {
 
+    private Simulaatio simulaatio;
     private TapahtumanKuuntelija kuuntelija;
 
     private JRadioButton helppo;
@@ -26,13 +28,17 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
 
     private JButton simulaatioNappula;
 
+    private JLabel reittiTeksti;
+
+    private JButton tyhjennaNappula;
+
     /**
      * Konstruktori.
      *
      * @param simulaatio
      */
     public ValikkoPaneeli(Simulaatio simulaatio) {
-        super(simulaatio);
+        this.simulaatio = simulaatio;
         this.kuuntelija = new TapahtumanKuuntelija(this.simulaatio, this);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         luoKomponentit();
@@ -45,6 +51,12 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
         teeAlgoritmiValikko();
         add(new JLabel(" "));
         teeSimuloinninAloitusNappula();
+        add(new JLabel(" "));
+        add(new JLabel(" "));
+        teeTekstiKentta();
+        add(new JLabel(" "));
+        add(new JLabel(" "));
+        teeTyhjennaNappula();
     }
 
     private void teeSokkeloValikko() {
@@ -95,22 +107,55 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
         add(simulaatioNappula);
     }
 
-    public void paivitaNappulat() {
+    private void teeTekstiKentta() {
+        this.reittiTeksti = new JLabel();
+        add(reittiTeksti);
+        this.reittiTeksti.setVisible(false);
+    }
+
+    private void teeTyhjennaNappula() {
+        this.tyhjennaNappula = new JButton("Tyhjennä");
+        tyhjennaNappula.addActionListener(this.kuuntelija);
+        add(tyhjennaNappula);
+        this.tyhjennaNappula.setVisible(false);
+    }
+
+    /**
+     * Päivittää valikossa näkyvät valikot, nappulat ja tekstit tilanteeseen
+     * sopiviksi.
+     */
+    private void paivitaNappulat() {
         if (this.simulaatio.onKaynnissa()) {
-            this.helppo.setEnabled(false);
-            this.keskitaso.setEnabled(false);
-            this.vaikea.setEnabled(false);
-            this.aStar.setEnabled(false);
-            this.bfs.setEnabled(false);
+            otaValikkoNappulatKayttoon(false);
             this.simulaatioNappula.setText("Lopeta simulaatio");
+            this.reittiTeksti.setText("Haetaan reittiä...");
+            this.reittiTeksti.setVisible(true);
+            if (this.simulaatio.onValmis()) {
+                this.simulaatioNappula.setVisible(false);
+                this.reittiTeksti.setText("Reitin pituus: " + this.simulaatio.getAlgoritmi().reitinPituus());
+                this.reittiTeksti.setVisible(true);
+                this.tyhjennaNappula.setVisible(true);
+            }
         } else {
-            this.helppo.setEnabled(true);
-            this.keskitaso.setEnabled(true);
-            this.vaikea.setEnabled(true);
-            this.aStar.setEnabled(true);
-            this.bfs.setEnabled(true);
+            otaValikkoNappulatKayttoon(true);
             this.simulaatioNappula.setText("Aloita simulaatio");
+            this.simulaatioNappula.setVisible(true);
+            this.reittiTeksti.setVisible(false);
+            this.tyhjennaNappula.setVisible(false);
+            if (this.simulaatio.getAlgoritmi() != null) {
+                otaValikkoNappulatKayttoon(false);
+                this.simulaatioNappula.setVisible(false);
+                this.tyhjennaNappula.setVisible(true);
+            }
         }
+    }
+
+    private void otaValikkoNappulatKayttoon(boolean kaytettavissa) {
+        this.helppo.setEnabled(kaytettavissa);
+        this.keskitaso.setEnabled(kaytettavissa);
+        this.vaikea.setEnabled(kaytettavissa);
+        this.aStar.setEnabled(kaytettavissa);
+        this.bfs.setEnabled(kaytettavissa);
     }
 
     public JRadioButton getHelppo() {
@@ -137,10 +182,12 @@ public class ValikkoPaneeli extends AbstraktiPaneeli {
         return simulaatioNappula;
     }
 
+    public JButton getTyhjennaNappula() {
+        return tyhjennaNappula;
+    }
+
     @Override
     public void paivita() {
         paivitaNappulat();
-
     }
-
 }

@@ -50,6 +50,9 @@ public abstract class Algoritmi implements Runnable {
     @Override
     public abstract void run();
 
+    /**
+     * Metodi hidastaa algoritmin suoritusta, jolloin simulaatio on selkeämpi.
+     */
     protected void hidasta() {
         try {
             Thread.sleep(50);
@@ -73,7 +76,6 @@ public abstract class Algoritmi implements Runnable {
                 continue;
             }
             naapurit.lisaa(new Solmu(k, solmu, solmu.getKuljetunReitinPituus() + sokkelo[k.getY()][k.getX()].getHidastus()));
-            //kuljetunReitinPituus + solmuunsaapumiskustannus (hidaste/normi)  ---^
         }
 
         return naapurit;
@@ -130,16 +132,16 @@ public abstract class Algoritmi implements Runnable {
         return sokkelo[k.getY()][k.getX()] == Ruutu.ESTE;
     }
 
-    protected void maaliLoydetty(Solmu solmu) {
+    protected void maaliLoytyi(Solmu solmu) {
         this.valmis = true;
         this.reittiMaalille = solmu;
         while (solmu != null) {
             this.solmujenTilaRuudukko[solmu.getY()][solmu.getX()] = SolmunTila.REITTI;
             solmu = solmu.getEdellinen();
         }
-//        if (paivitettava != null) {
-//            this.paivitettava.paivita();
-//        }
+        if (paivitettava != null) {
+            this.paivitettava.paivita();
+        }
     }
 
     /**

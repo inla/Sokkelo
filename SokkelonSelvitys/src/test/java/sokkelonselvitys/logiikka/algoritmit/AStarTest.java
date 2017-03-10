@@ -35,7 +35,7 @@ public class AStarTest {
         suorita();
         assertTrue(astar.onValmis());
     }
-    
+
     @Test
     public void testLopetaLopettaaAlgoritmin() {
         new Thread(astar).start();
@@ -43,7 +43,7 @@ public class AStarTest {
         assertTrue(astar.getReittiMaalille() == null);
         assertFalse(astar.onValmis());
     }
-    
+
     @Test
     public void testSolmujenTilatVaihdetaanReitiksiOikein() {
         this.astar = new AStar(sokkelo, new Koordinaatti(0, 1), new Koordinaatti(6, 1));
@@ -56,7 +56,7 @@ public class AStarTest {
         assertEquals(SolmunTila.REITTI, astar.solmujenTilaRuudukko[1][5]);
         assertEquals(SolmunTila.REITTI, astar.solmujenTilaRuudukko[1][6]);
     }
-    
+
     @Test
     public void testAlgoritmiLoytaaReitin() {
         suorita();
@@ -102,7 +102,7 @@ public class AStarTest {
         assertFalse(astar.solmujenTilaRuudukko[4][5] == SolmunTila.REITTI);
         assertFalse(astar.solmujenTilaRuudukko[5][5] == SolmunTila.REITTI);
     }
-    
+
     public void suorita() {
         new Thread(astar).start();
         int laskuri = 0;

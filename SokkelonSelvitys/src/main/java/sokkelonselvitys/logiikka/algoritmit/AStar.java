@@ -53,7 +53,7 @@ public class AStar extends Algoritmi {
             Solmu tutkittava = this.tutkittavat.otaPienin();
 
             if (tutkittava.getKoordinaatit().equals(this.maali)) {
-                maaliLoydetty(tutkittava);
+                maaliLoytyi(tutkittava);
                 break;
             }
 
@@ -68,7 +68,7 @@ public class AStar extends Algoritmi {
                     continue;
                 }
                 lyhimmatReitit[s.getY()][s.getX()] = s.getKuljetunReitinPituus();
-                
+
                 this.solmujenTilaRuudukko[s.getY()][s.getX()] = SolmunTila.LOYDETTY;
                 this.tutkittavat.lisaa(s);
             }
