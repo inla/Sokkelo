@@ -178,7 +178,7 @@ Pienempi(i, j) vertaa kahta oliota ja palauttaa niistä pienemmän, vaihda(i,j) 
 ```
 Heapify-operaatio kuljettaa alkiota alaspäin puussa kunnes kekoehto on korjautunut, eli alkiot ovat taas oikeassa pienuusjärjestyksessä. Operaatio on muuten vakioaikainen, mutta se kutsuu itseään rekursiivisesti. Pahimmassa tapauksessa kutsuja tehdään puun korkeuden verran, eli aikavaativuus on O(log n). Tilavaativuus on myös O(log n) rekursion takia.
 
-OtaPienin()-operaatio tarkistaa ensin ettei keko ole tyhjä, ja palauttaa sitten keon juurialkion. Sitten keon viimeinen alkio sirretään juureen ja kutsutaan heapify-metodia juurelle kekoehdon korjaamiseksi.
+OtaPienin()-operaatio tarkistaa ensin ettei keko ole tyhjä, ja ottaa sitten juurialkion muistiin. Sitten keon viimeinen alkio sirretään juureen ja kutsutaan heapify-metodia juurelle kekoehdon korjaamiseksi. Lopulta muistiin laitettu pienin alkio palautetaan.
 ```javascript
     public E otaPienin() {
         if (tyhja()) {
@@ -191,7 +191,31 @@ OtaPienin()-operaatio tarkistaa ensin ettei keko ole tyhjä, ja palauttaa sitten
         return min;
     }
 ```
+
+Lisaa(lisattava)-operaatio tarkistaa ensin onko keko täynnä ja tarvittaessa kasvattaa kekoa. Sitten alkio lisätään keon viimeiseksi ja sitä siirretään ylöspäin puussa kunnes se on oikealla paikalla kekoehdon mukaisesti. KasvataKekoa()-operaatiossa on silmukka, joka suoritetaan n kertaa, eli operaation aikavaativuus on O(n). Myös lisaa-operaatiossa on silmukka, joka suoritetaan pahimmassa tapauksessa puun korkeuden verran eli log n, muuten se on vakioaikainen. Lisaa-operaation aikavaativuudeksi siis saadaan O(log n + n) = O(log n).
 ```javascript
+    public void lisaa(E lisattava) {
+        this.koko++;
+        if (taysi()) {
+            kasvataKekoa();
+        }
+        int i = this.koko - 1;
+        this.keko[i] = lisattava;
+        while (i > 0 && pienempi(i, vanhempi(i)) == i) {
+            vaihda(i, vanhempi(i));
+            i = vanhempi(i);
+        }
+    }
+    
+    private void kasvataKekoa() {
+        Object[] uusi = new Object[maxKoko * 2];
+
+        for (int i = 0; i < this.keko.length; i++) {
+            uusi[i] = this.keko[i];
+        }
+        this.keko = uusi;
+        this.maxKoko *= 2;
+    }
 ```
 
 ##Puutteet ja parannusehdotukset
